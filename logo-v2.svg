@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <linearGradient id="main-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4F46E5"/>
+      <stop offset="100%" style="stop-color:#7C3AED"/>
+    </linearGradient>
+    <linearGradient id="warm-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F59E0B"/>
+      <stop offset="100%" style="stop-color:#F97316"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- The JoynPal Mark: Two overlapping speech bubbles forming a heart/connection -->
+  <!-- Left bubble (indigo) -->
+  <path d="M160 140 C160 100, 200 70, 250 70 C280 70, 300 85, 300 85 L256 85 C200 85, 160 115, 160 160 L160 240 C130 240, 100 230, 80 210 L100 240 L100 210 C70 210, 50 190, 50 160 L50 140 C50 100, 90 70, 140 70 L160 70 Z" fill="url(#main-grad)" opacity="0.9"/>
+  
+  <!-- Simplified: Two rounded shapes connecting -->
+  <!-- Person 1 circle -->
+  <circle cx="190" cy="180" r="65" fill="url(#main-grad)"/>
+  <!-- Person 2 circle -->  
+  <circle cx="322" cy="180" r="65" fill="url(#warm-grad)"/>
+  
+  <!-- Overlap/connection area - lighter blend -->
+  <ellipse cx="256" cy="180" rx="30" ry="55" fill="white" opacity="0.25"/>
+  
+  <!-- Heart shape in the connection -->
+  <path d="M256 210 L244 198 C236 190, 236 178, 244 172 C248 168, 252 168, 256 172 C260 168, 264 168, 268 172 C276 178, 276 190, 268 198 Z" fill="white" opacity="0.9"/>
+  
+  <!-- Wordmark below -->
+  <text x="256" y="340" text-anchor="middle" font-family="Inter, -apple-system, Helvetica, sans-serif" font-size="90" font-weight="900" letter-spacing="-4">
+    <tspan fill="#4F46E5">Joyn</tspan><tspan fill="#F59E0B">Pal</tspan>
+  </text>
+  
+  <!-- Tagline -->
+  <text x="256" y="380" text-anchor="middle" font-family="Inter, -apple-system, Helvetica, sans-serif" font-size="24" font-weight="500" fill="#64748B" letter-spacing="4">
+    CONNECT · BOOK · MEET
+  </text>
+</svg>

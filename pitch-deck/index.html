@@ -3,871 +3,541 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JoynPal — Pitch Deck</title>
+    <title>JoynPal — Investor Deck</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
         :root {
             --indigo: #4F46E5;
-            --indigo-light: #6366F1;
-            --indigo-dark: #3730A3;
+            --indigo-light: #818CF8;
+            --violet: #7C3AED;
             --amber: #F59E0B;
-            --amber-light: #FBBF24;
-            --dark: #0F172A;
-            --gray-900: #1E293B;
-            --gray-700: #334155;
-            --gray-500: #64748B;
-            --gray-300: #CBD5E1;
-            --gray-100: #F1F5F9;
-            --white: #FFFFFF;
-            --green: #10B981;
+            --orange: #F97316;
+            --dark: #0A0A0F;
+            --card: #13131A;
+            --card-border: rgba(255,255,255,0.06);
+            --text: #FFFFFF;
+            --text-secondary: #A1A1AA;
+            --text-muted: #52525B;
+            --green: #22C55E;
             --red: #EF4444;
         }
+        body { font-family: 'Inter', sans-serif; background: var(--dark); color: var(--text); }
         
-        body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background: var(--dark);
-            color: var(--white);
-            overflow-x: hidden;
-        }
-        
-        /* Slide System */
         .slide {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 60px 80px;
+            padding: 80px;
             position: relative;
-            overflow: hidden;
+            border-bottom: 1px solid var(--card-border);
         }
         
-        .slide-number {
+        /* Top bar on each slide */
+        .slide-header {
             position: absolute;
-            bottom: 30px;
-            right: 40px;
-            font-size: 14px;
-            color: var(--gray-500);
-            font-weight: 500;
+            top: 0; left: 0; right: 0;
+            padding: 24px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        
-        .slide-logo {
-            position: absolute;
-            top: 30px;
-            left: 40px;
-            font-size: 18px;
-            font-weight: 800;
-            color: var(--indigo-light);
-            letter-spacing: -0.5px;
-        }
+        .slide-brand { font-size: 16px; font-weight: 800; }
+        .slide-brand span:first-child { color: var(--indigo); }
+        .slide-brand span:last-child { color: var(--amber); }
+        .slide-num { font-size: 12px; color: var(--text-muted); font-weight: 500; letter-spacing: 2px; }
         
         /* Typography */
-        h1 { font-size: 72px; font-weight: 900; line-height: 1.05; letter-spacing: -2px; }
-        h2 { font-size: 48px; font-weight: 800; line-height: 1.15; letter-spacing: -1.5px; }
-        h3 { font-size: 32px; font-weight: 700; line-height: 1.3; letter-spacing: -0.5px; }
-        .subtitle { font-size: 24px; color: var(--gray-300); font-weight: 400; line-height: 1.5; }
-        .body-text { font-size: 20px; color: var(--gray-300); line-height: 1.6; }
-        .small-text { font-size: 16px; color: var(--gray-500); }
+        h1 { font-size: 64px; font-weight: 900; line-height: 1.05; letter-spacing: -3px; }
+        h2 { font-size: 44px; font-weight: 800; line-height: 1.1; letter-spacing: -2px; }
+        h3 { font-size: 20px; font-weight: 700; letter-spacing: -0.3px; }
+        .label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; color: var(--indigo-light); margin-bottom: 16px; }
+        .sub { font-size: 20px; color: var(--text-secondary); line-height: 1.6; }
+        .muted { color: var(--text-muted); }
+        .amber { color: var(--amber); }
+        .indigo { color: var(--indigo-light); }
+        .green { color: var(--green); }
         
-        .highlight { color: var(--amber); }
-        .highlight-indigo { color: var(--indigo-light); }
-        
-        /* Grid Layouts */
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 30px; }
-        .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 24px; }
+        /* Layout */
+        .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+        .g4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 20px; }
+        .mt { margin-top: 48px; }
+        .mb { margin-bottom: 48px; }
+        .center { text-align: center; }
         
         /* Cards */
-        .card {
-            background: var(--gray-900);
-            border: 1px solid rgba(99, 102, 241, 0.15);
+        .c {
+            background: var(--card);
+            border: 1px solid var(--card-border);
             border-radius: 16px;
-            padding: 32px;
+            padding: 28px;
+            transition: border-color 0.3s;
         }
+        .c:hover { border-color: rgba(255,255,255,0.12); }
+        .c .ic { font-size: 32px; margin-bottom: 14px; display: block; }
+        .c h3 { margin-bottom: 8px; font-size: 17px; }
+        .c p { font-size: 14px; color: var(--text-secondary); line-height: 1.5; }
         
-        .card-highlight {
-            background: linear-gradient(135deg, var(--indigo-dark), var(--gray-900));
-            border: 1px solid rgba(99, 102, 241, 0.3);
-        }
+        /* Stat */
+        .stat { text-align: center; padding: 28px 16px; }
+        .stat-n { font-size: 48px; font-weight: 900; background: linear-gradient(135deg, var(--amber), var(--orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .stat-l { font-size: 13px; color: var(--text-muted); margin-top: 6px; line-height: 1.4; }
         
-        .card h3 { font-size: 22px; margin-bottom: 12px; }
-        .card p { font-size: 16px; color: var(--gray-300); line-height: 1.5; }
-        .card .icon { font-size: 36px; margin-bottom: 16px; display: block; }
-        
-        /* Stat boxes */
-        .stat-box {
-            text-align: center;
-            padding: 32px;
-        }
-        .stat-number { font-size: 56px; font-weight: 900; color: var(--amber); }
-        .stat-label { font-size: 16px; color: var(--gray-300); margin-top: 8px; }
-        
-        /* Tables */
-        .clean-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 18px;
-        }
-        .clean-table th {
-            text-align: left;
-            padding: 16px 20px;
-            color: var(--gray-500);
-            font-weight: 600;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-bottom: 2px solid var(--gray-700);
-        }
-        .clean-table td {
-            padding: 16px 20px;
-            border-bottom: 1px solid rgba(51, 65, 85, 0.5);
-            color: var(--gray-300);
-        }
-        .clean-table tr:last-child td { border-bottom: none; }
+        /* Table */
+        .tb { width: 100%; border-collapse: collapse; }
+        .tb th { text-align: left; padding: 14px 16px; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); border-bottom: 1px solid var(--card-border); }
+        .tb td { padding: 14px 16px; border-bottom: 1px solid var(--card-border); font-size: 15px; color: var(--text-secondary); }
+        .tb tr:last-child td { border-bottom: none; }
         
         /* Tags */
-        .tag {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
-        }
-        .tag-green { background: rgba(16, 185, 129, 0.15); color: var(--green); }
-        .tag-amber { background: rgba(245, 158, 11, 0.15); color: var(--amber); }
-        .tag-indigo { background: rgba(99, 102, 241, 0.15); color: var(--indigo-light); }
+        .tag { display: inline-block; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+        .tag-g { background: rgba(34,197,94,0.1); color: var(--green); }
+        .tag-a { background: rgba(245,158,11,0.1); color: var(--amber); }
+        .tag-i { background: rgba(129,140,248,0.1); color: var(--indigo-light); }
         
-        /* Progress bars */
-        .progress-bar {
-            height: 8px;
-            background: var(--gray-700);
-            border-radius: 4px;
-            overflow: hidden;
-            margin-top: 8px;
-        }
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--indigo), var(--amber));
-            border-radius: 4px;
-        }
+        /* Pill list */
+        .pills { display: flex; flex-wrap: wrap; gap: 8px; }
+        .pill { padding: 8px 16px; background: var(--card); border: 1px solid var(--card-border); border-radius: 100px; font-size: 14px; }
         
-        /* Special Slides */
-        .slide-title {
-            background: linear-gradient(135deg, var(--dark) 0%, #1a1a3e 50%, var(--dark) 100%);
-        }
+        /* Glow */
+        .glow { position: absolute; border-radius: 50%; filter: blur(120px); pointer-events: none; }
         
-        .slide-title h1 {
-            background: linear-gradient(135deg, var(--white) 0%, var(--indigo-light) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+        /* Check list */
+        .ck { list-style: none; }
+        .ck li { padding: 6px 0; font-size: 15px; color: var(--text-secondary); }
+        .ck li::before { content: "✓ "; color: var(--green); font-weight: 700; }
         
-        .glow-circle {
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            filter: blur(120px);
-            opacity: 0.15;
-        }
+        /* Flow */
+        .flow { display: flex; align-items: center; gap: 12px; padding: 14px 0; }
+        .flow-n { width: 40px; height: 40px; border-radius: 10px; background: var(--indigo); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; flex-shrink: 0; }
+        .flow-arrow { color: var(--text-muted); font-size: 20px; }
         
-        /* Flow diagram */
-        .flow-step {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            padding: 20px 0;
-        }
-        .flow-step .step-num {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            background: var(--indigo);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 20px;
-            flex-shrink: 0;
-        }
+        /* Divider */
+        .divider { width: 60px; height: 3px; background: linear-gradient(90deg, var(--indigo), var(--amber)); border-radius: 2px; }
         
-        .divider {
-            width: 80px;
-            height: 4px;
-            background: var(--indigo);
-            border-radius: 2px;
-            margin: 20px 0;
-        }
-
-        /* Mobile responsive */
+        /* Quote box */
+        .quote { padding: 24px; background: var(--card); border-radius: 12px; border-left: 3px solid var(--amber); font-size: 18px; font-weight: 500; font-style: italic; line-height: 1.5; }
+        
+        /* Responsive */
         @media (max-width: 768px) {
-            .slide { padding: 30px 20px; min-height: auto; padding-top: 60px; padding-bottom: 60px; }
-            h1 { font-size: 36px; letter-spacing: -1px; }
-            h2 { font-size: 28px; letter-spacing: -0.5px; }
-            h3 { font-size: 20px; }
-            .subtitle { font-size: 18px; }
-            .body-text { font-size: 16px; }
-            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; gap: 16px; }
-            .stat-number { font-size: 36px; }
-            .stat-box { padding: 20px; }
-            .card { padding: 20px; }
-            .card .icon { font-size: 28px; margin-bottom: 10px; }
-            .card h3 { font-size: 18px; }
-            .card p { font-size: 14px; }
-            .clean-table { font-size: 14px; }
-            .clean-table th, .clean-table td { padding: 10px 8px; }
-            .slide-logo { top: 15px; left: 20px; font-size: 14px; }
-            .slide-number { bottom: 15px; right: 20px; font-size: 12px; }
-            .flow-step .step-num { width: 36px; height: 36px; font-size: 16px; }
-            .glow-circle { width: 200px; height: 200px; }
-            .tag { font-size: 11px; padding: 3px 8px; }
+            .slide { padding: 60px 24px; }
+            h1 { font-size: 32px; letter-spacing: -1.5px; }
+            h2 { font-size: 26px; letter-spacing: -1px; }
+            .sub { font-size: 16px; }
+            .g2, .g3, .g4 { grid-template-columns: 1fr; gap: 12px; }
+            .stat-n { font-size: 32px; }
+            .c { padding: 20px; }
+            .slide-header { padding: 16px 24px; }
+            .tb { font-size: 13px; }
+            .tb th, .tb td { padding: 10px 8px; }
         }
-        
         @media (max-width: 480px) {
-            .slide { padding: 20px 16px; padding-top: 50px; padding-bottom: 50px; }
-            h1 { font-size: 28px; }
-            h2 { font-size: 24px; }
-            .stat-number { font-size: 28px; }
+            .slide { padding: 50px 16px; }
+            h1 { font-size: 26px; }
+            h2 { font-size: 22px; }
         }
-
-        /* Print styles */
         @media print {
             .slide { page-break-after: always; min-height: auto; padding: 40px; }
-            body { background: white; color: black; }
-            .card { border-color: #ddd; }
-            h1, h2, h3 { color: var(--dark); }
-            .subtitle, .body-text, .card p, .clean-table td { color: var(--gray-700); }
         }
     </style>
 </head>
 <body>
 
-<!-- SLIDE 1: TITLE -->
-<div class="slide slide-title">
-    <div class="glow-circle" style="top: -100px; right: -100px; background: var(--indigo);"></div>
-    <div class="glow-circle" style="bottom: -100px; left: -100px; background: var(--amber);"></div>
+<!-- 1: TITLE -->
+<div class="slide" style="justify-content: center; align-items: center; text-align: center;">
+    <div class="glow" style="width: 500px; height: 500px; background: var(--indigo); top: -150px; right: -150px; opacity: 0.08;"></div>
+    <div class="glow" style="width: 400px; height: 400px; background: var(--amber); bottom: -100px; left: -100px; opacity: 0.06;"></div>
     
-    <div style="max-width: 900px;">
-        <p style="font-size: 18px; color: var(--indigo-light); font-weight: 600; margin-bottom: 24px; letter-spacing: 2px; text-transform: uppercase;">Seed Round — Confidential</p>
-        <h1 style="margin-bottom: 24px;">JoynPal</h1>
-        <p class="subtitle" style="font-size: 32px; color: var(--gray-300); margin-bottom: 48px;">
-            The Airbnb for Human Connection
-        </p>
-        <div class="divider"></div>
-        <p class="small-text" style="margin-top: 24px;">
-            Next Level International Limited • Hong Kong • March 2026
-        </p>
+    <div style="max-width: 700px;">
+        <div class="label" style="margin-bottom: 32px;">Seed Round · Confidential · March 2026</div>
+        
+        <!-- Logo mark -->
+        <div style="margin-bottom: 32px;">
+            <svg viewBox="0 0 120 50" style="width: 120px; height: 50px;" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="20" cy="20" r="14" fill="#4F46E5"/>
+                <circle cx="40" cy="20" r="14" fill="#F59E0B"/>
+                <ellipse cx="30" cy="20" rx="6" ry="11" fill="white" opacity="0.25"/>
+                <path d="M30 28 L27 25 C25 23, 25 20, 27 19 C28 18, 29 18, 30 19 C31 18, 32 18, 33 19 C35 20, 35 23, 33 25 Z" fill="white" opacity="0.9"/>
+            </svg>
+        </div>
+        
+        <h1 style="font-size: 72px; margin-bottom: 16px;">
+            <span style="color: var(--indigo-light);">Joyn</span><span class="amber">Pal</span>
+        </h1>
+        <p class="sub" style="font-size: 28px; margin-bottom: 40px;">The Airbnb for Human Connection</p>
+        <div class="divider" style="margin: 0 auto 32px;"></div>
+        <p class="muted" style="font-size: 14px;">Next Level International Limited · Hong Kong</p>
     </div>
-    <div class="slide-number">1 / 12</div>
+    <div class="slide-num" style="position: absolute; bottom: 30px; right: 40px;">01 / 12</div>
 </div>
 
-<!-- SLIDE 2: THE PROBLEM -->
-<div class="slide" style="background: var(--dark);">
-    <div class="slide-logo">JoynPal</div>
+<!-- 2: PROBLEM -->
+<div class="slide">
+    <div class="slide-header"><div class="slide-brand"><span>Joyn</span><span>Pal</span></div><div class="slide-num">02 / 12</div></div>
     
-    <p style="color: var(--indigo-light); font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px;">The Problem</p>
-    <h2 style="margin-bottom: 48px;">The world is facing a <span class="highlight">loneliness epidemic</span></h2>
+    <div class="label">The Problem</div>
+    <h2 class="mb">The world is in a <span class="amber">loneliness crisis</span></h2>
     
-    <div class="grid-4" style="margin-bottom: 48px;">
-        <div class="stat-box card">
-            <div class="stat-number">1.2B</div>
-            <div class="stat-label">people experience loneliness worldwide</div>
-        </div>
-        <div class="stat-box card">
-            <div class="stat-number">$154B</div>
-            <div class="stat-label">annual cost to employers from absenteeism</div>
-        </div>
-        <div class="stat-box card">
-            <div class="stat-number">60%</div>
-            <div class="stat-label">of young adults report "serious loneliness"</div>
-        </div>
-        <div class="stat-box card">
-            <div class="stat-number">$2B+</div>
-            <div class="stat-label">Japan's rental friend market (growing 15% YoY)</div>
-        </div>
+    <div class="g4 mb">
+        <div class="c stat"><div class="stat-n">1.2B</div><div class="stat-l">people feel lonely worldwide</div></div>
+        <div class="c stat"><div class="stat-n">$154B</div><div class="stat-l">annual cost to employers</div></div>
+        <div class="c stat"><div class="stat-n">60%</div><div class="stat-l">young adults seriously lonely</div></div>
+        <div class="c stat"><div class="stat-n">$2B+</div><div class="stat-l">Japan's friend rental market</div></div>
     </div>
     
-    <p class="body-text">The US Surgeon General declared loneliness a <strong style="color: var(--white);">public health crisis</strong>. We have platforms for dating, accommodation, and rides — but nothing for the most basic need: <strong style="color: var(--amber);">genuine human connection on demand</strong>.</p>
-    
-    <div class="slide-number">2 / 12</div>
+    <div class="quote">"Loneliness is a public health crisis" — U.S. Surgeon General, 2023</div>
 </div>
 
-<!-- SLIDE 3: THE SOLUTION -->
-<div class="slide" style="background: var(--dark);">
-    <div class="slide-logo">JoynPal</div>
+<!-- 3: SOLUTION -->
+<div class="slide">
+    <div class="slide-header"><div class="slide-brand"><span>Joyn</span><span>Pal</span></div><div class="slide-num">03 / 12</div></div>
     
-    <p style="color: var(--indigo-light); font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px;">The Solution</p>
-    <h2 style="margin-bottom: 48px;">Book a companion for <span class="highlight">any activity</span></h2>
+    <div class="label">The Solution</div>
+    <h2 class="mb">Book a companion for <span class="amber">any moment</span></h2>
     
-    <div class="grid-2">
+    <div class="g2">
         <div>
-            <div class="flow-step">
-                <div class="step-num">1</div>
-                <div>
-                    <h3 style="font-size: 20px;">Browse</h3>
-                    <p style="color: var(--gray-300);">Search by city, category, availability, rating</p>
-                </div>
-            </div>
-            <div class="flow-step">
-                <div class="step-num">2</div>
-                <div>
-                    <h3 style="font-size: 20px;">Book & Pay</h3>
-                    <p style="color: var(--gray-300);">Secure escrow payment, choose your time slot</p>
-                </div>
-            </div>
-            <div class="flow-step">
-                <div class="step-num">3</div>
-                <div>
-                    <h3 style="font-size: 20px;">Meet</h3>
-                    <p style="color: var(--gray-300);">In person or virtual — dining, sports, events, mentoring</p>
-                </div>
-            </div>
-            <div class="flow-step">
-                <div class="step-num">4</div>
-                <div>
-                    <h3 style="font-size: 20px;">Review</h3>
-                    <p style="color: var(--gray-300);">Both parties rate each other. Trust scores update.</p>
-                </div>
-            </div>
+            <div class="flow"><div class="flow-n">1</div><div><h3>Browse</h3><p class="muted" style="font-size: 14px;">Search by city, category, availability, rating</p></div></div>
+            <div class="flow"><div class="flow-n">2</div><div><h3>Book & Pay</h3><p class="muted" style="font-size: 14px;">Secure escrow payment, choose your time</p></div></div>
+            <div class="flow"><div class="flow-n">3</div><div><h3>Meet</h3><p class="muted" style="font-size: 14px;">In person or virtual — you choose the activity</p></div></div>
+            <div class="flow"><div class="flow-n">4</div><div><h3>Review</h3><p class="muted" style="font-size: 14px;">Both rate each other. Trust scores update.</p></div></div>
         </div>
         <div>
-            <div class="grid-3" style="gap: 16px;">
-                <div class="card" style="padding: 20px; text-align: center;">
-                    <span style="font-size: 32px;">💕</span>
-                    <p style="font-size: 13px; margin-top: 8px;">Social Companion</p>
-                </div>
-                <div class="card" style="padding: 20px; text-align: center;">
-                    <span style="font-size: 32px;">🎮</span>
-                    <p style="font-size: 13px; margin-top: 8px;">Gaming</p>
-                </div>
-                <div class="card" style="padding: 20px; text-align: center;">
-                    <span style="font-size: 32px;">🏋️</span>
-                    <p style="font-size: 13px; margin-top: 8px;">Sports</p>
-                </div>
-                <div class="card" style="padding: 20px; text-align: center;">
-                    <span style="font-size: 32px;">🎨</span>
-                    <p style="font-size: 13px; margin-top: 8px;">Culture</p>
-                </div>
-                <div class="card" style="padding: 20px; text-align: center;">
-                    <span style="font-size: 32px;">🧑‍💼</span>
-                    <p style="font-size: 13px; margin-top: 8px;">Mentoring</p>
-                </div>
-                <div class="card" style="padding: 20px; text-align: center;">
-                    <span style="font-size: 32px;">🌍</span>
-                    <p style="font-size: 13px; margin-top: 8px;">City Guide</p>
-                </div>
-                <div class="card" style="padding: 20px; text-align: center;">
-                    <span style="font-size: 32px;">🍽️</span>
-                    <p style="font-size: 13px; margin-top: 8px;">Dining</p>
-                </div>
-                <div class="card" style="padding: 20px; text-align: center;">
-                    <span style="font-size: 32px;">💻</span>
-                    <p style="font-size: 13px; margin-top: 8px;">Virtual</p>
-                </div>
-                <div class="card" style="padding: 20px; text-align: center;">
-                    <span style="font-size: 32px;">✈️</span>
-                    <p style="font-size: 13px; margin-top: 8px;">Travel</p>
-                </div>
+            <div class="pills" style="gap: 10px;">
+                <span class="pill">💕 Social</span>
+                <span class="pill">🎮 Gaming</span>
+                <span class="pill">🏋️ Sports</span>
+                <span class="pill">🎨 Culture</span>
+                <span class="pill">🧑‍💼 Mentoring</span>
+                <span class="pill">🌍 City Guide</span>
+                <span class="pill">🍽️ Dining</span>
+                <span class="pill">💻 Virtual</span>
+                <span class="pill">✈️ Travel</span>
+                <span class="pill">🎵 Music</span>
+                <span class="pill">📚 Study</span>
+                <span class="pill">🧘 Wellness</span>
+            </div>
+            <div class="c mt" style="background: linear-gradient(135deg, var(--indigo), var(--violet)); border: none;">
+                <p style="font-size: 16px; font-weight: 600;">Not dating. Not hookups.<br/>Pure social connection, on demand.</p>
             </div>
         </div>
     </div>
-    
-    <div class="slide-number">3 / 12</div>
 </div>
 
-<!-- SLIDE 4: AI ADVANTAGE -->
-<div class="slide" style="background: linear-gradient(135deg, var(--dark) 0%, #1a1a3e 100%);">
-    <div class="slide-logo">JoynPal</div>
+<!-- 4: AI -->
+<div class="slide" style="background: linear-gradient(180deg, var(--dark) 0%, #0D0D1A 100%);">
+    <div class="slide-header"><div class="slide-brand"><span>Joyn</span><span>Pal</span></div><div class="slide-num">04 / 12</div></div>
+    <div class="glow" style="width: 400px; height: 400px; background: var(--violet); top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.05;"></div>
     
-    <p style="color: var(--amber); font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px;">Our Unfair Advantage</p>
-    <h2 style="margin-bottom: 16px;">AI-Powered Multi-Agent Architecture</h2>
-    <p class="body-text" style="margin-bottom: 40px;">6 specialized AI agents working together to create an intelligent, self-improving platform</p>
+    <div class="label" style="color: var(--amber);">Unfair Advantage</div>
+    <h2>AI Multi-Agent <span class="amber">Architecture</span></h2>
+    <p class="sub mb" style="max-width: 600px;">6 specialized AI agents that communicate and learn together</p>
     
-    <div class="grid-3">
-        <div class="card card-highlight">
-            <span class="icon">🤖</span>
-            <h3>Matching Agent</h3>
-            <p>Personality analysis, preference learning, 3x better match quality than basic filtering</p>
-        </div>
-        <div class="card card-highlight">
-            <span class="icon">🛡️</span>
-            <h3>Moderation Agent</h3>
-            <p>Real-time behavior analysis, fraud detection, 90% reduction in inappropriate content</p>
-        </div>
-        <div class="card card-highlight">
-            <span class="icon">🎯</span>
-            <h3>Experience Agent</h3>
-            <p>Post-meeting follow-up, personalized suggestions, 40% increase in repeat bookings</p>
-        </div>
-        <div class="card card-highlight">
-            <span class="icon">💬</span>
-            <h3>Support Agent</h3>
-            <p>24/7 multilingual support, 95% resolution rate, &lt;2min response time</p>
-        </div>
-        <div class="card card-highlight">
-            <span class="icon">📊</span>
-            <h3>Analytics Agent</h3>
-            <p>Demand forecasting, dynamic pricing, platform-wide optimization</p>
-        </div>
-        <div class="card card-highlight" style="border-color: var(--amber); border-width: 2px;">
-            <span class="icon">⭐</span>
-            <h3 style="color: var(--amber);">Companion Assistant</h3>
-            <p>Every companion gets a personal AI assistant — calendar, bookings, auto-responses, translations</p>
+    <div class="g3">
+        <div class="c"><span class="ic">🤖</span><h3>Matching</h3><p>Personality analysis, compatibility scoring. 3× better than filters.</p></div>
+        <div class="c"><span class="ic">🛡️</span><h3>Moderation</h3><p>Real-time behavior detection. 90% reduction in bad content.</p></div>
+        <div class="c"><span class="ic">🎯</span><h3>Experience</h3><p>Post-meeting optimization. 40% more repeat bookings.</p></div>
+        <div class="c"><span class="ic">💬</span><h3>Support</h3><p>24/7 multilingual. 95% resolution rate. &lt;2 min response.</p></div>
+        <div class="c"><span class="ic">📊</span><h3>Analytics</h3><p>Demand forecasting, dynamic pricing, platform intelligence.</p></div>
+        <div class="c" style="border-color: var(--amber); border-width: 2px;">
+            <span class="ic">⭐</span>
+            <h3 class="amber">Companion Assistant</h3>
+            <p>Every companion gets a personal AI — calendar, auto-replies, translations, optimization.</p>
         </div>
     </div>
-    
-    <div class="slide-number">4 / 12</div>
 </div>
 
-<!-- SLIDE 5: VIRAL ENGINE -->
-<div class="slide" style="background: var(--dark);">
-    <div class="slide-logo">JoynPal</div>
+<!-- 5: VIRAL ENGINE -->
+<div class="slide">
+    <div class="slide-header"><div class="slide-brand"><span>Joyn</span><span>Pal</span></div><div class="slide-num">05 / 12</div></div>
     
-    <p style="color: var(--indigo-light); font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px;">Growth Engine</p>
-    <h2 style="margin-bottom: 16px;">OnlyFans-Inspired <span class="highlight">Viral Affiliate System</span></h2>
-    <p class="body-text" style="margin-bottom: 40px;">OnlyFans went from $0 to $5B+ using this exact model. We've already built the infrastructure.</p>
+    <div class="label">Growth Engine</div>
+    <h2>OnlyFans-Inspired <span class="amber">Viral System</span></h2>
+    <p class="sub mb">OnlyFans: $0 → $5B+ with this model. We already built the infrastructure.</p>
     
-    <div class="grid-2">
+    <div class="g2">
         <div>
-            <div style="background: var(--gray-900); border-radius: 16px; padding: 32px; margin-bottom: 24px;">
-                <h3 style="margin-bottom: 24px; font-size: 22px;">The Viral Loop</h3>
-                <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-                    <span class="tag tag-indigo">Ambassador joins</span>
-                    <span style="color: var(--gray-500);">→</span>
-                    <span class="tag tag-indigo">Recruits companions</span>
-                    <span style="color: var(--gray-500);">→</span>
-                    <span class="tag tag-amber">Companion earns</span>
-                    <span style="color: var(--gray-500);">→</span>
-                    <span class="tag tag-green">Ambassador gets 10-30%</span>
-                    <span style="color: var(--gray-500);">→</span>
-                    <span class="tag tag-indigo">Recruits more</span>
+            <div class="c mb">
+                <h3 style="margin-bottom: 16px;">The Viral Loop</h3>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center;">
+                    <span class="tag tag-i">Ambassador joins</span><span class="muted">→</span>
+                    <span class="tag tag-i">Recruits companions</span><span class="muted">→</span>
+                    <span class="tag tag-a">Companion earns</span><span class="muted">→</span>
+                    <span class="tag tag-g">Ambassador gets 10-30%</span><span class="muted">→</span>
+                    <span class="tag tag-i">Recruits more</span>
                 </div>
             </div>
-            <div style="background: var(--gray-900); border-radius: 16px; padding: 32px;">
-                <h3 style="margin-bottom: 16px; font-size: 22px;">Why It Works</h3>
-                <ul style="list-style: none; font-size: 17px; color: var(--gray-300);">
-                    <li style="padding: 8px 0;">✅ Zero CAC for supply growth</li>
-                    <li style="padding: 8px 0;">✅ Aligned incentives at every level</li>
-                    <li style="padding: 8px 0;">✅ </li>
-                    <li style="padding: 8px 0;">✅ Proven at billion-dollar scale</li>
-                </ul>
-            </div>
-        </div>
-        <div>
-            <div class="card" style="padding: 0; overflow: hidden;">
-                <div style="background: var(--indigo-dark); padding: 16px 24px;">
-                    <h3 style="font-size: 18px;">Affiliate Infrastructure — Already Built</h3>
-                </div>
-                <table class="clean-table" style="font-size: 15px;">
-                    <tr><td>Referral link tracking</td><td><span class="tag tag-green">✅ Built</span></td></tr>
-                    <tr><td>Multi-tier commissions</td><td><span class="tag tag-green">✅ Built</span></td></tr>
-                    <tr><td>Real-time dashboard</td><td><span class="tag tag-green">✅ Built</span></td></tr>
-                    <tr><td>Payouts (PayPal/Bank/Crypto)</td><td><span class="tag tag-green">✅ Built</span></td></tr>
-                    <tr><td>Marketing materials</td><td><span class="tag tag-green">✅ Built</span></td></tr>
-                    <tr><td>Telegram notifications</td><td><span class="tag tag-green">✅ Built</span></td></tr>
-                    <tr><td>Custom domain verification</td><td><span class="tag tag-green">✅ Built</span></td></tr>
-                    <tr><td>External API</td><td><span class="tag tag-green">✅ Built</span></td></tr>
-                </table>
-            </div>
-        </div>
-    </div>
-    
-    <div class="slide-number">5 / 12</div>
-</div>
-
-<!-- SLIDE 6: MARKET -->
-<div class="slide" style="background: var(--dark);">
-    <div class="slide-logo">JoynPal</div>
-    
-    <p style="color: var(--indigo-light); font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px;">Market Opportunity</p>
-    <h2 style="margin-bottom: 48px;">A <span class="highlight">$50B+</span> untapped market</h2>
-    
-    <div class="grid-3" style="margin-bottom: 48px;">
-        <div class="card" style="text-align: center;">
-            <div style="font-size: 48px; font-weight: 900; color: var(--indigo-light);">$556B</div>
-            <div style="font-size: 14px; color: var(--gray-500); margin-top: 4px;">Global Gig Economy</div>
-            <div class="progress-bar"><div class="progress-fill" style="width: 100%;"></div></div>
-        </div>
-        <div class="card" style="text-align: center;">
-            <div style="font-size: 48px; font-weight: 900; color: var(--indigo-light);">$254B</div>
-            <div style="font-size: 14px; color: var(--gray-500); margin-top: 4px;">Experience Economy</div>
-            <div class="progress-bar"><div class="progress-fill" style="width: 60%;"></div></div>
-        </div>
-        <div class="card" style="text-align: center;">
-            <div style="font-size: 48px; font-weight: 900; color: var(--indigo-light);">$1.8T</div>
-            <div style="font-size: 14px; color: var(--gray-500); margin-top: 4px;">Wellness Market</div>
-            <div class="progress-bar"><div class="progress-fill" style="width: 45%;"></div></div>
-        </div>
-    </div>
-    
-    <div class="grid-2">
-        <div>
-            <h3 style="margin-bottom: 16px; color: var(--amber);">Why Now?</h3>
-            <ul style="list-style: none; font-size: 18px; color: var(--gray-300);">
-                <li style="padding: 8px 0;">🦠 Post-COVID loneliness crisis</li>
-                <li style="padding: 8px 0;">🤖 AI makes matching & moderation possible at scale</li>
-                <li style="padding: 8px 0;">💰 Creator economy normalization</li>
-                <li style="padding: 8px 0;">🇯🇵 Japan proved the model ($2B+ market)</li>
-                <li style="padding: 8px 0;">⚖️ Non-sexual companionship is legal everywhere</li>
+            <ul class="ck">
+                <li>Zero customer acquisition cost for supply growth</li>
+                <li>Aligned incentives at every level</li>
+                <li>Proven at billion-dollar scale</li>
+                <li>Passive income drives ambassador retention</li>
             </ul>
         </div>
-        <div>
-            <h3 style="margin-bottom: 16px; color: var(--amber);">Target Markets</h3>
-            <table class="clean-table" style="font-size: 16px;">
-                <tr><td><strong>Year 1</strong></td><td>Switzerland, France, UK</td></tr>
-                <tr><td><strong>Year 2</strong></td><td>Germany, Spain, Nordics, US</td></tr>
-                <tr><td><strong>Year 3</strong></td><td>Global expansion</td></tr>
-            </table>
-            <div style="margin-top: 24px;">
-                <p class="small-text">SAM: $5B • Year 1 SOM: €5-10M GMV</p>
+        <div class="c" style="padding: 0; overflow: hidden;">
+            <div style="background: var(--indigo); padding: 14px 20px;">
+                <h3 style="font-size: 15px;">Affiliate Engine — Already Built</h3>
             </div>
-        </div>
-    </div>
-    
-    <div class="slide-number">6 / 12</div>
-</div>
-
-<!-- SLIDE 7: BUSINESS MODEL -->
-<div class="slide" style="background: var(--dark);">
-    <div class="slide-logo">JoynPal</div>
-    
-    <p style="color: var(--indigo-light); font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px;">Business Model</p>
-    <h2 style="margin-bottom: 48px;">Multiple revenue streams, <span class="highlight">high margins</span></h2>
-    
-    <div class="grid-2">
-        <div>
-            <table class="clean-table">
-                <thead>
-                    <tr><th>Revenue Stream</th><th>Margin</th></tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong style="color: var(--white);">Platform Commission</strong><br><span class="small-text">15-25% per booking</span></td>
-                        <td><span class="tag tag-green">~95%</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong style="color: var(--white);">Companion Subscriptions</strong><br><span class="small-text">Premium profiles, AI assistant, analytics</span></td>
-                        <td><span class="tag tag-green">MRR</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong style="color: var(--white);">Boost & Promotion</strong><br><span class="small-text">Visibility upgrades for companions</span></td>
-                        <td><span class="tag tag-green">High</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong style="color: var(--white);">Enterprise</strong><br><span class="small-text">B2B packages for companies</span></td>
-                        <td><span class="tag tag-amber">B2B</span></td>
-                    </tr>
-                    <tr>
-                        <td><span class="tag tag-amber">Recurring</span></td>
-                    </tr>
-                </tbody>
+            <table class="tb">
+                <tr><td>Referral link tracking</td><td><span class="tag tag-g">✓ Built</span></td></tr>
+                <tr><td>Multi-tier commissions</td><td><span class="tag tag-g">✓ Built</span></td></tr>
+                <tr><td>Real-time dashboard</td><td><span class="tag tag-g">✓ Built</span></td></tr>
+                <tr><td>Payouts (PayPal/Bank/Crypto)</td><td><span class="tag tag-g">✓ Built</span></td></tr>
+                <tr><td>Marketing materials</td><td><span class="tag tag-g">✓ Built</span></td></tr>
+                <tr><td>Telegram notifications</td><td><span class="tag tag-g">✓ Built</span></td></tr>
+                <tr><td>External API</td><td><span class="tag tag-g">✓ Built</span></td></tr>
             </table>
         </div>
+    </div>
+</div>
+
+<!-- 6: MARKET -->
+<div class="slide">
+    <div class="slide-header"><div class="slide-brand"><span>Joyn</span><span>Pal</span></div><div class="slide-num">06 / 12</div></div>
+    
+    <div class="label">Market</div>
+    <h2 class="mb">A <span class="amber">$50B+</span> untapped opportunity</h2>
+    
+    <div class="g3 mb">
+        <div class="c center">
+            <div style="font-size: 42px; font-weight: 900; color: var(--indigo-light);">$556B</div>
+            <div class="stat-l">Global Gig Economy</div>
+        </div>
+        <div class="c center">
+            <div style="font-size: 42px; font-weight: 900; color: var(--indigo-light);">$254B</div>
+            <div class="stat-l">Experience Economy</div>
+        </div>
+        <div class="c center">
+            <div style="font-size: 42px; font-weight: 900; color: var(--indigo-light);">$1.8T</div>
+            <div class="stat-l">Wellness Market</div>
+        </div>
+    </div>
+    
+    <div class="g2">
         <div>
-            <div class="card" style="margin-bottom: 24px;">
-                <h3 style="font-size: 18px; color: var(--amber); margin-bottom: 16px;">Unit Economics (at scale)</h3>
-                <table class="clean-table" style="font-size: 16px;">
-                    <tr><td>Avg. booking value</td><td style="text-align: right; color: var(--white); font-weight: 700;">€50</td></tr>
-                    <tr><td>Platform take rate</td><td style="text-align: right; color: var(--white); font-weight: 700;">20%</td></tr>
-                    <tr><td>Revenue per booking</td><td style="text-align: right; color: var(--white); font-weight: 700;">€10</td></tr>
-                    <tr><td>CAC (via affiliates)</td><td style="text-align: right; color: var(--green); font-weight: 700;">€5</td></tr>
-                    <tr><td>LTV (12 months)</td><td style="text-align: right; color: var(--white); font-weight: 700;">€120</td></tr>
-                    <tr><td><strong>LTV:CAC</strong></td><td style="text-align: right; color: var(--amber); font-weight: 900; font-size: 24px;">24:1</td></tr>
-                </table>
+            <h3 class="amber" style="margin-bottom: 16px;">Why Now</h3>
+            <ul class="ck">
+                <li>Post-COVID loneliness epidemic at peak</li>
+                <li>AI enables matching & moderation at scale</li>
+                <li>Creator economy normalized paid social</li>
+                <li>Japan proved the model: $2B+ and growing 15% YoY</li>
+                <li>Non-sexual companionship: legal everywhere</li>
+            </ul>
+        </div>
+        <div>
+            <h3 class="amber" style="margin-bottom: 16px;">Target</h3>
+            <table class="tb">
+                <tr><td><strong>Year 1</strong></td><td>Switzerland · France · UK</td></tr>
+                <tr><td><strong>Year 2</strong></td><td>Germany · Nordics · US</td></tr>
+                <tr><td><strong>Year 3</strong></td><td>Global</td></tr>
+            </table>
+            <p class="muted" style="margin-top: 16px; font-size: 13px;">SAM: $5B · Year 1 SOM: €5-10M GMV</p>
+        </div>
+    </div>
+</div>
+
+<!-- 7: BUSINESS MODEL -->
+<div class="slide">
+    <div class="slide-header"><div class="slide-brand"><span>Joyn</span><span>Pal</span></div><div class="slide-num">07 / 12</div></div>
+    
+    <div class="label">Revenue</div>
+    <h2 class="mb">Multiple streams, <span class="amber">high margins</span></h2>
+    
+    <div class="g2">
+        <div>
+            <table class="tb">
+                <thead><tr><th>Revenue Stream</th><th>Type</th></tr></thead>
+                <tr><td><strong style="color: var(--text);">Platform Commission</strong><br><span class="muted" style="font-size: 13px;">15-25% per booking</span></td><td><span class="tag tag-g">~95% margin</span></td></tr>
+                <tr><td><strong style="color: var(--text);">Companion Subscriptions</strong><br><span class="muted" style="font-size: 13px;">Premium features, AI assistant</span></td><td><span class="tag tag-a">MRR</span></td></tr>
+                <tr><td><strong style="color: var(--text);">Boost & Promotion</strong><br><span class="muted" style="font-size: 13px;">Visibility for companions</span></td><td><span class="tag tag-g">High margin</span></td></tr>
+                <tr><td><strong style="color: var(--text);">Enterprise B2B</strong><br><span class="muted" style="font-size: 13px;">Companies buying for employees</span></td><td><span class="tag tag-i">Contracts</span></td></tr>
+            </table>
+        </div>
+        <div class="c" style="background: linear-gradient(135deg, var(--card), #1a1525);">
+            <h3 class="amber" style="margin-bottom: 20px;">Unit Economics</h3>
+            <table class="tb" style="font-size: 15px;">
+                <tr><td>Avg. booking</td><td style="text-align: right; font-weight: 700; color: var(--text);">€50</td></tr>
+                <tr><td>Take rate</td><td style="text-align: right; font-weight: 700; color: var(--text);">20%</td></tr>
+                <tr><td>Revenue/booking</td><td style="text-align: right; font-weight: 700; color: var(--text);">€10</td></tr>
+                <tr><td>CAC (affiliates)</td><td style="text-align: right; font-weight: 700; color: var(--green);">€5</td></tr>
+                <tr><td>LTV (12mo)</td><td style="text-align: right; font-weight: 700; color: var(--text);">€120</td></tr>
+            </table>
+            <div style="margin-top: 20px; text-align: center; padding: 16px; background: rgba(245,158,11,0.1); border-radius: 10px;">
+                <div style="font-size: 36px; font-weight: 900; color: var(--amber);">24:1</div>
+                <div class="muted" style="font-size: 12px;">LTV : CAC Ratio</div>
             </div>
         </div>
     </div>
-    
-    <div class="slide-number">7 / 12</div>
 </div>
 
-<!-- SLIDE 8: TRACTION -->
-<div class="slide" style="background: linear-gradient(135deg, var(--dark) 0%, #1a1a3e 100%);">
-    <div class="slide-logo">JoynPal</div>
+<!-- 8: TRACTION -->
+<div class="slide" style="background: linear-gradient(180deg, #0D0D1A 0%, var(--dark) 100%);">
+    <div class="slide-header"><div class="slide-brand"><span>Joyn</span><span>Pal</span></div><div class="slide-num">08 / 12</div></div>
     
-    <p style="color: var(--amber); font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px;">Traction & Proof</p>
-    <h2 style="margin-bottom: 16px;">Built by one person. <span class="highlight">Ready to scale.</span></h2>
-    <p class="body-text" style="margin-bottom: 48px;">This isn't a pitch deck with promises. The technology is built, tested, and functional.</p>
+    <div class="label" style="color: var(--amber);">Traction</div>
+    <h2>Built by <span class="amber">one person</span>. Ready to scale.</h2>
+    <p class="sub mb">This isn't a pitch with promises. The technology exists and works.</p>
     
-    <div class="grid-4" style="margin-bottom: 48px;">
-        <div class="card" style="text-align: center; padding: 24px;">
-            <div style="font-size: 42px; font-weight: 900; color: var(--green);">1,000+</div>
-            <div class="small-text" style="margin-top: 4px;">Files of production code</div>
-        </div>
-        <div class="card" style="text-align: center; padding: 24px;">
-            <div style="font-size: 42px; font-weight: 900; color: var(--green);">4</div>
-            <div class="small-text" style="margin-top: 4px;">Complete platforms built solo</div>
-        </div>
-        <div class="card" style="text-align: center; padding: 24px;">
-            <div style="font-size: 42px; font-weight: 900; color: var(--green);">17</div>
-            <div class="small-text" style="margin-top: 4px;">Years of dev experience</div>
-        </div>
-        <div class="card" style="text-align: center; padding: 24px;">
-            <div style="font-size: 42px; font-weight: 900; color: var(--green);">1</div>
-            <div class="small-text" style="margin-top: 4px;">Person. That's it.</div>
-        </div>
+    <div class="g4 mb">
+        <div class="c stat"><div class="stat-n">1,000+</div><div class="stat-l">Files of production code</div></div>
+        <div class="c stat"><div class="stat-n">4</div><div class="stat-l">Complete platforms built solo</div></div>
+        <div class="c stat"><div class="stat-n">17yr</div><div class="stat-l">Development experience</div></div>
+        <div class="c stat"><div class="stat-n">1</div><div class="stat-l">Person. That's it.</div></div>
     </div>
     
-    <div class="grid-2">
-        <div class="card">
-            <h3 style="font-size: 18px; margin-bottom: 16px;">What's Built</h3>
-            <ul style="list-style: none; font-size: 16px; color: var(--gray-300);">
-                <li style="padding: 6px 0;">✅ Full marketplace backend (Django)</li>
-                <li style="padding: 6px 0;">✅ React Design System (from Figma)</li>
-                <li style="padding: 6px 0;">✅ Complete affiliate engine</li>
-                <li style="padding: 6px 0;">✅ Payment infrastructure</li>
-                <li style="padding: 6px 0;">✅ Trust & Safety system</li>
-                <li style="padding: 6px 0;">✅ AI agent architecture</li>
+    <div class="g2">
+        <div class="c">
+            <h3 style="margin-bottom: 14px;">What's Built</h3>
+            <ul class="ck" style="font-size: 14px;">
+                <li>Full marketplace backend (Django REST)</li>
+                <li>React Design System (from Figma)</li>
+                <li>Complete affiliate engine with payouts</li>
+                <li>Payment infrastructure (Stripe)</li>
+                <li>Trust & Safety (KYC, trust scores)</li>
+                <li>AI agent architecture (OpenClaw)</li>
+                <li>Docker deployment ready</li>
             </ul>
         </div>
-        <div class="card">
-            <h3 style="font-size: 18px; margin-bottom: 16px;">Technical Stack</h3>
-            <ul style="list-style: none; font-size: 16px; color: var(--gray-300);">
-                <li style="padding: 6px 0;">🐍 Django (REST API + Templates)</li>
-                <li style="padding: 6px 0;">⚛️ React + TypeScript (Frontend)</li>
-                <li style="padding: 6px 0;">🤖 OpenClaw (AI Multi-Agent)</li>
-                <li style="padding: 6px 0;">💳 Stripe / Custom Payment</li>
-                <li style="padding: 6px 0;">🐳 Docker (Production-ready)</li>
-                <li style="padding: 6px 0;">📱 React Native (Mobile-ready)</li>
-                <li style="padding: 6px 0;">🔐 KYC / Trust Score System</li>
+        <div class="c">
+            <h3 style="margin-bottom: 14px;">Tech Stack</h3>
+            <ul class="ck" style="font-size: 14px;">
+                <li>Django + REST API</li>
+                <li>React + TypeScript</li>
+                <li>OpenClaw Multi-Agent AI</li>
+                <li>Stripe / Custom Payments</li>
+                <li>Docker (production-ready)</li>
+                <li>React Native (mobile-ready)</li>
+                <li>PostgreSQL + Redis</li>
             </ul>
         </div>
     </div>
-    
-    <div class="slide-number">8 / 12</div>
 </div>
 
-<!-- SLIDE 9: COMPETITIVE -->
-<div class="slide" style="background: var(--dark);">
-    <div class="slide-logo">JoynPal</div>
+<!-- 9: COMPETITION -->
+<div class="slide">
+    <div class="slide-header"><div class="slide-brand"><span>Joyn</span><span>Pal</span></div><div class="slide-num">09 / 12</div></div>
     
-    <p style="color: var(--indigo-light); font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px;">Competitive Landscape</p>
-    <h2 style="margin-bottom: 48px;">The only platform with <span class="highlight">all four pillars</span></h2>
+    <div class="label">Competition</div>
+    <h2 class="mb">The only platform with <span class="amber">all four pillars</span></h2>
     
-    <table class="clean-table" style="font-size: 17px;">
-        <thead>
-            <tr>
-                <th>Feature</th>
-                <th style="text-align: center;">JoynPal</th>
-                <th style="text-align: center;">Bumble BFF</th>
-                <th style="text-align: center;">RentAFriend</th>
-                <th style="text-align: center;">Meetup</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>On-demand booking</td>
-                <td style="text-align: center; font-size: 22px;">✅</td>
-                <td style="text-align: center; font-size: 22px;">❌</td>
-                <td style="text-align: center; font-size: 22px;">⚠️</td>
-                <td style="text-align: center; font-size: 22px;">❌</td>
-            </tr>
-            <tr>
-                <td>Integrated payments</td>
-                <td style="text-align: center; font-size: 22px;">✅</td>
-                <td style="text-align: center; font-size: 22px;">❌</td>
-                <td style="text-align: center; font-size: 22px;">❌</td>
-                <td style="text-align: center; font-size: 22px;">❌</td>
-            </tr>
-            <tr>
-                <td>AI multi-agent system</td>
-                <td style="text-align: center; font-size: 22px;">✅</td>
-                <td style="text-align: center; font-size: 22px;">❌</td>
-                <td style="text-align: center; font-size: 22px;">❌</td>
-                <td style="text-align: center; font-size: 22px;">❌</td>
-            </tr>
-            <tr>
-                <td>Viral affiliate engine</td>
-                <td style="text-align: center; font-size: 22px;">✅</td>
-                <td style="text-align: center; font-size: 22px;">❌</td>
-                <td style="text-align: center; font-size: 22px;">❌</td>
-                <td style="text-align: center; font-size: 22px;">❌</td>
-            </tr>
-            <tr>
-                <td style="text-align: center; font-size: 22px;">✅</td>
-                <td style="text-align: center; font-size: 22px;">❌</td>
-                <td style="text-align: center; font-size: 22px;">❌</td>
-                <td style="text-align: center; font-size: 22px;">❌</td>
-            </tr>
-            <tr>
-                <td>Trust score system</td>
-                <td style="text-align: center; font-size: 22px;">✅</td>
-                <td style="text-align: center; font-size: 22px;">⚠️</td>
-                <td style="text-align: center; font-size: 22px;">❌</td>
-                <td style="text-align: center; font-size: 22px;">⚠️</td>
-            </tr>
-        </tbody>
+    <table class="tb" style="font-size: 16px;">
+        <thead><tr><th></th><th class="center">JoynPal</th><th class="center">Bumble BFF</th><th class="center">RentAFriend</th><th class="center">Meetup</th></tr></thead>
+        <tr><td>On-demand booking</td><td class="center" style="font-size: 20px;">✅</td><td class="center" style="font-size: 20px;">❌</td><td class="center" style="font-size: 20px;">⚠️</td><td class="center" style="font-size: 20px;">❌</td></tr>
+        <tr><td>Integrated payments</td><td class="center" style="font-size: 20px;">✅</td><td class="center" style="font-size: 20px;">❌</td><td class="center" style="font-size: 20px;">❌</td><td class="center" style="font-size: 20px;">❌</td></tr>
+        <tr><td>AI matching & moderation</td><td class="center" style="font-size: 20px;">✅</td><td class="center" style="font-size: 20px;">❌</td><td class="center" style="font-size: 20px;">❌</td><td class="center" style="font-size: 20px;">❌</td></tr>
+        <tr><td>Viral affiliate engine</td><td class="center" style="font-size: 20px;">✅</td><td class="center" style="font-size: 20px;">❌</td><td class="center" style="font-size: 20px;">❌</td><td class="center" style="font-size: 20px;">❌</td></tr>
+        <tr><td>Trust score system</td><td class="center" style="font-size: 20px;">✅</td><td class="center" style="font-size: 20px;">⚠️</td><td class="center" style="font-size: 20px;">❌</td><td class="center" style="font-size: 20px;">⚠️</td></tr>
     </table>
     
-    <div style="margin-top: 40px; padding: 24px; background: var(--gray-900); border-radius: 12px; border-left: 4px solid var(--amber);">
-        <p style="font-size: 20px; color: var(--white); font-weight: 600;">
-            "They're dating apps that added a feature. We're purpose-built for this."
-        </p>
-    </div>
-    
-    <div class="slide-number">9 / 12</div>
+    <div class="quote mt">"They're dating apps that added a feature. We're purpose-built for this."</div>
 </div>
 
-<!-- SLIDE 10: GO TO MARKET -->
-<div class="slide" style="background: var(--dark);">
-    <div class="slide-logo">JoynPal</div>
+<!-- 10: GO TO MARKET -->
+<div class="slide">
+    <div class="slide-header"><div class="slide-brand"><span>Joyn</span><span>Pal</span></div><div class="slide-num">10 / 12</div></div>
     
-    <p style="color: var(--indigo-light); font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px;">Go-to-Market</p>
-    <h2 style="margin-bottom: 48px;">From <span class="highlight">Geneva</span> to the world</h2>
+    <div class="label">Go-to-Market</div>
+    <h2 class="mb">From <span class="amber">Geneva</span> to the world</h2>
     
-    <div class="grid-3">
-        <div class="card" style="border-top: 4px solid var(--indigo);">
-            <span class="tag tag-indigo" style="margin-bottom: 16px; display: inline-block;">Phase 1 • M1-3</span>
-            <h3 style="font-size: 22px; margin-bottom: 12px;">Launch</h3>
-            <p style="font-size: 15px; margin-bottom: 16px;">Geneva & Paris — high purchasing power, international, lonely professionals</p>
-            <ul style="list-style: none; font-size: 14px; color: var(--gray-300);">
-                <li style="padding: 4px 0;">→ 200 initial companions</li>
-                <li style="padding: 4px 0;">→ Affiliate engine activation</li>
-                <li style="padding: 4px 0;">→ TikTok/Instagram content</li>
-                <li style="padding: 4px 0;">→ PR: "The app that cures loneliness"</li>
+    <div class="g3">
+        <div class="c" style="border-top: 3px solid var(--indigo);">
+            <span class="tag tag-i" style="margin-bottom: 14px; display: inline-block;">Phase 1 · M1-3</span>
+            <h3 style="margin-bottom: 10px;">Launch</h3>
+            <p style="font-size: 14px; margin-bottom: 14px;">Geneva & Paris</p>
+            <ul class="ck" style="font-size: 13px;">
+                <li>200 initial companions</li>
+                <li>Affiliate engine ON</li>
+                <li>TikTok + Instagram content</li>
+                <li>PR: "The loneliness cure"</li>
             </ul>
         </div>
-        <div class="card" style="border-top: 4px solid var(--amber);">
-            <span class="tag tag-amber" style="margin-bottom: 16px; display: inline-block;">Phase 2 • M4-6</span>
-            <h3 style="font-size: 22px; margin-bottom: 12px;">Growth</h3>
-            <p style="font-size: 15px; margin-bottom: 16px;">London, Berlin, Zurich — powered by viral affiliate engine</p>
-            <ul style="list-style: none; font-size: 14px; color: var(--gray-300);">
-                <li style="padding: 4px 0;">→ 1,000+ companions</li>
-                <li style="padding: 4px 0;">→ Enterprise product launch</li>
-                <li style="padding: 4px 0;">→ App Store launch</li>
-                <li style="padding: 4px 0;">→ AI assistants for companions</li>
+        <div class="c" style="border-top: 3px solid var(--amber);">
+            <span class="tag tag-a" style="margin-bottom: 14px; display: inline-block;">Phase 2 · M4-6</span>
+            <h3 style="margin-bottom: 10px;">Growth</h3>
+            <p style="font-size: 14px; margin-bottom: 14px;">London · Berlin · Zurich</p>
+            <ul class="ck" style="font-size: 13px;">
+                <li>1,000+ companions</li>
+                <li>Enterprise product</li>
+                <li>App Store launch</li>
+                <li>AI assistants live</li>
             </ul>
         </div>
-        <div class="card" style="border-top: 4px solid var(--green);">
-            <span class="tag tag-green" style="margin-bottom: 16px; display: inline-block;">Phase 3 • M7-12</span>
-            <h3 style="font-size: 22px; margin-bottom: 12px;">Scale</h3>
-            <p style="font-size: 15px; margin-bottom: 16px;">US entry — prepare Series A at 10x valuation</p>
-            <ul style="list-style: none; font-size: 14px; color: var(--gray-300);">
-                <li style="padding: 4px 0;">→ 15,000+ companions</li>
-                <li style="padding: 4px 0;">→ </li>
-                <li style="padding: 4px 0;">→ €5M+ GMV monthly</li>
-                <li style="padding: 4px 0;">→ Series A ready</li>
+        <div class="c" style="border-top: 3px solid var(--green);">
+            <span class="tag tag-g" style="margin-bottom: 14px; display: inline-block;">Phase 3 · M7-12</span>
+            <h3 style="margin-bottom: 10px;">Scale</h3>
+            <p style="font-size: 14px; margin-bottom: 14px;">US Market Entry</p>
+            <ul class="ck" style="font-size: 13px;">
+                <li>15,000+ companions</li>
+                <li>€5M+ monthly GMV</li>
+                <li>Series A ready</li>
+                <li>Global expansion</li>
             </ul>
         </div>
     </div>
-    
-    <div class="slide-number">10 / 12</div>
 </div>
 
-<!-- SLIDE 11: FINANCIALS -->
-<div class="slide" style="background: var(--dark);">
-    <div class="slide-logo">JoynPal</div>
+<!-- 11: FINANCIALS -->
+<div class="slide">
+    <div class="slide-header"><div class="slide-brand"><span>Joyn</span><span>Pal</span></div><div class="slide-num">11 / 12</div></div>
     
-    <p style="color: var(--indigo-light); font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px;">Financial Projections</p>
-    <h2 style="margin-bottom: 48px;">Conservative path to <span class="highlight">€17.5M revenue</span> in 3 years</h2>
+    <div class="label">Financials</div>
+    <h2 class="mb">Path to <span class="amber">€17.5M revenue</span></h2>
     
-    <table class="clean-table" style="margin-bottom: 48px;">
-        <thead>
-            <tr>
-                <th></th>
-                <th style="text-align: right;">Year 1</th>
-                <th style="text-align: right;">Year 2</th>
-                <th style="text-align: right;">Year 3</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>GMV</td>
-                <td style="text-align: right; color: var(--white); font-weight: 600;">€2M</td>
-                <td style="text-align: right; color: var(--white); font-weight: 600;">€15M</td>
-                <td style="text-align: right; color: var(--white); font-weight: 600;">€80M</td>
-            </tr>
-            <tr>
-                <td>Platform Revenue</td>
-                <td style="text-align: right; color: var(--white); font-weight: 600;">€400K</td>
-                <td style="text-align: right; color: var(--white); font-weight: 600;">€3M</td>
-                <td style="text-align: right; color: var(--white); font-weight: 600;">€16M</td>
-            </tr>
-            <tr>
-                <td>Subscriptions</td>
-                <td style="text-align: right; color: var(--white); font-weight: 600;">€50K</td>
-                <td style="text-align: right; color: var(--white); font-weight: 600;">€300K</td>
-                <td style="text-align: right; color: var(--white); font-weight: 600;">€1.5M</td>
-            </tr>
-            <tr style="border-top: 2px solid var(--indigo);">
-                <td><strong style="color: var(--amber);">Total Revenue</strong></td>
-                <td style="text-align: right; color: var(--amber); font-weight: 900; font-size: 22px;">€450K</td>
-                <td style="text-align: right; color: var(--amber); font-weight: 900; font-size: 22px;">€3.3M</td>
-                <td style="text-align: right; color: var(--amber); font-weight: 900; font-size: 22px;">€17.5M</td>
-            </tr>
-            <tr>
-                <td>EBITDA</td>
-                <td style="text-align: right; color: var(--red); font-weight: 600;">-€150K</td>
-                <td style="text-align: right; color: var(--green); font-weight: 600;">€800K</td>
-                <td style="text-align: right; color: var(--green); font-weight: 600;">€7M</td>
-            </tr>
-        </tbody>
+    <table class="tb mb" style="font-size: 17px;">
+        <thead><tr><th></th><th style="text-align: right;">Year 1</th><th style="text-align: right;">Year 2</th><th style="text-align: right;">Year 3</th></tr></thead>
+        <tr><td>GMV</td><td style="text-align: right; font-weight: 600;">€2M</td><td style="text-align: right; font-weight: 600;">€15M</td><td style="text-align: right; font-weight: 600;">€80M</td></tr>
+        <tr><td>Revenue</td><td style="text-align: right; font-weight: 600;">€400K</td><td style="text-align: right; font-weight: 600;">€3M</td><td style="text-align: right; font-weight: 600;">€16M</td></tr>
+        <tr><td>Subscriptions</td><td style="text-align: right; font-weight: 600;">€50K</td><td style="text-align: right; font-weight: 600;">€300K</td><td style="text-align: right; font-weight: 600;">€1.5M</td></tr>
+        <tr style="border-top: 2px solid var(--indigo);"><td><strong class="amber">Total Revenue</strong></td><td style="text-align: right; font-weight: 900; color: var(--amber); font-size: 22px;">€450K</td><td style="text-align: right; font-weight: 900; color: var(--amber); font-size: 22px;">€3.3M</td><td style="text-align: right; font-weight: 900; color: var(--amber); font-size: 22px;">€17.5M</td></tr>
+        <tr><td>EBITDA</td><td style="text-align: right; color: var(--red); font-weight: 600;">-€150K</td><td style="text-align: right; color: var(--green); font-weight: 600;">€800K</td><td style="text-align: right; color: var(--green); font-weight: 600;">€7M</td></tr>
     </table>
     
-    <div class="grid-3">
-        <div class="card" style="text-align: center;">
-            <div style="font-size: 36px; font-weight: 900; color: var(--amber);">Month 14</div>
-            <div class="small-text">Break-even</div>
-        </div>
-        <div class="card" style="text-align: center;">
-            <div style="font-size: 36px; font-weight: 900; color: var(--indigo-light);">Month 12</div>
-            <div class="small-text">Series A ready ($5-10M)</div>
-        </div>
-        <div class="card" style="text-align: center;">
-            <div style="font-size: 36px; font-weight: 900; color: var(--green);">24:1</div>
-            <div class="small-text">LTV:CAC ratio</div>
-        </div>
+    <div class="g3">
+        <div class="c center"><div style="font-size: 32px; font-weight: 900; color: var(--amber);">Month 14</div><div class="muted" style="font-size: 13px;">Break-even</div></div>
+        <div class="c center"><div style="font-size: 32px; font-weight: 900; color: var(--indigo-light);">Month 12</div><div class="muted" style="font-size: 13px;">Series A ready · $5-10M</div></div>
+        <div class="c center"><div style="font-size: 32px; font-weight: 900; color: var(--green);">24:1</div><div class="muted" style="font-size: 13px;">LTV : CAC</div></div>
     </div>
-    
-    <div class="slide-number">11 / 12</div>
 </div>
 
-<!-- SLIDE 12: THE ASK -->
-<div class="slide slide-title">
-    <div class="glow-circle" style="top: -150px; left: 50%; transform: translateX(-50%); background: var(--indigo);"></div>
-    <div class="glow-circle" style="bottom: -100px; right: -100px; background: var(--amber);"></div>
+<!-- 12: THE ASK -->
+<div class="slide" style="justify-content: center; align-items: center; text-align: center;">
+    <div class="glow" style="width: 500px; height: 500px; background: var(--indigo); top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.06;"></div>
+    <div class="slide-header"><div class="slide-brand"><span>Joyn</span><span>Pal</span></div><div class="slide-num">12 / 12</div></div>
     
-    <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-        <p style="color: var(--indigo-light); font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 24px;">The Ask</p>
+    <div style="max-width: 600px;">
+        <div class="label" style="color: var(--amber);">The Ask</div>
+        <h1 style="font-size: 56px; margin-bottom: 40px;"><span style="color: var(--text);">€600K</span> <span class="muted" style="font-size: 36px; font-weight: 400;">Seed</span></h1>
         
-        <h2 style="margin-bottom: 48px; font-size: 56px;">€600,000 <span style="color: var(--gray-300); font-weight: 400;">Seed Round</span></h2>
-        
-        <div class="grid-2" style="margin-bottom: 48px; max-width: 600px; margin-left: auto; margin-right: auto; margin-bottom: 48px;">
-            <div class="card" style="text-align: center;">
-                <div style="font-size: 36px; font-weight: 900; color: var(--indigo-light);">€300K</div>
-                <div class="small-text">Technology & AI</div>
+        <div class="g2" style="margin-bottom: 40px;">
+            <div class="c center">
+                <div style="font-size: 32px; font-weight: 900; color: var(--indigo-light);">€300K</div>
+                <div class="muted" style="font-size: 13px;">Technology & AI</div>
             </div>
-            <div class="card" style="text-align: center;">
-                <div style="font-size: 36px; font-weight: 900; color: var(--amber);">€300K</div>
-                <div class="small-text">Marketing & Growth</div>
+            <div class="c center">
+                <div style="font-size: 32px; font-weight: 900; color: var(--amber);">€300K</div>
+                <div class="muted" style="font-size: 13px;">Marketing & Growth</div>
             </div>
         </div>
         
-        <div style="margin-bottom: 48px;">
-            <p class="body-text" style="font-size: 18px; color: var(--gray-300);">
-                12 months runway → 3 European markets → Product-market fit → Series A
-            </p>
-        </div>
+        <p class="muted" style="font-size: 16px; margin-bottom: 48px;">12 months → 3 markets → Product-market fit → Series A</p>
         
-        <div class="divider" style="margin: 0 auto 48px;"></div>
+        <div class="divider" style="margin: 0 auto 40px;"></div>
         
-        <p style="font-size: 28px; font-weight: 700; color: var(--white); font-style: italic; line-height: 1.4;">
-            "I built this alone.<br/>
-            <span class="highlight">Imagine what happens when we add fuel.</span>"
+        <p style="font-size: 24px; font-weight: 600; line-height: 1.5;">
+            I built this alone.<br/>
+            <span class="amber">Imagine what happens when we add fuel.</span>
         </p>
         
         <div style="margin-top: 48px;">
-            <p style="color: var(--gray-500); font-size: 16px;">
-                Sacha • Founder & CEO/CTO<br/>
-                Next Level International Limited • Hong Kong<br/>
-                <span style="color: var(--indigo-light);">joynpal.com</span>
+            <p class="muted" style="font-size: 14px;">
+                Sacha · Founder & CEO/CTO<br/>
+                Next Level International Limited · Hong Kong<br/>
+                <span class="indigo">joynpal.com</span>
             </p>
         </div>
     </div>
-    
-    <div class="slide-number">12 / 12</div>
 </div>
 
 </body>
