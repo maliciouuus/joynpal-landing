@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JoynPal — Pitch Deck</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --indigo: #4F46E5;
+            --indigo-light: #6366F1;
+            --indigo-dark: #3730A3;
+            --amber: #F59E0B;
+            --amber-light: #FBBF24;
+            --dark: #0F172A;
+            --gray-900: #1E293B;
+            --gray-700: #334155;
+            --gray-500: #64748B;
+            --gray-300: #CBD5E1;
+            --gray-100: #F1F5F9;
+            --white: #FFFFFF;
+            --green: #10B981;
+            --red: #EF4444;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--dark);
+            color: var(--white);
+            overflow-x: hidden;
+        }
+        
+        /* Slide System */
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .slide-number {
+            position: absolute;
+            bottom: 30px;
+            right: 40px;
+            font-size: 14px;
+            color: var(--gray-500);
+            font-weight: 500;
+        }
+        
+        .slide-logo {
+            position: absolute;
+            top: 30px;
+            left: 40px;
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--indigo-light);
+            letter-spacing: -0.5px;
+        }
+        
+        /* Typography */
+        h1 { font-size: 72px; font-weight: 900; line-height: 1.05; letter-spacing: -2px; }
+        h2 { font-size: 48px; font-weight: 800; line-height: 1.15; letter-spacing: -1.5px; }
+        h3 { font-size: 32px; font-weight: 700; line-height: 1.3; letter-spacing: -0.5px; }
+        .subtitle { font-size: 24px; color: var(--gray-300); font-weight: 400; line-height: 1.5; }
+        .body-text { font-size: 20px; color: var(--gray-300); line-height: 1.6; }
+        .small-text { font-size: 16px; color: var(--gray-500); }
+        
+        .highlight { color: var(--amber); }
+        .highlight-indigo { color: var(--indigo-light); }
+        
+        /* Grid Layouts */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 30px; }
+        .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 24px; }
+        
+        /* Cards */
+        .card {
+            background: var(--gray-900);
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            border-radius: 16px;
+            padding: 32px;
+        }
+        
+        .card-highlight {
+            background: linear-gradient(135deg, var(--indigo-dark), var(--gray-900));
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+        
+        .card h3 { font-size: 22px; margin-bottom: 12px; }
+        .card p { font-size: 16px; color: var(--gray-300); line-height: 1.5; }
+        .card .icon { font-size: 36px; margin-bottom: 16px; display: block; }
+        
+        /* Stat boxes */
+        .stat-box {
+            text-align: center;
+            padding: 32px;
+        }
+        .stat-number { font-size: 56px; font-weight: 900; color: var(--amber); }
+        .stat-label { font-size: 16px; color: var(--gray-300); margin-top: 8px; }
+        
+        /* Tables */
+        .clean-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 18px;
+        }
+        .clean-table th {
+            text-align: left;
+            padding: 16px 20px;
+            color: var(--gray-500);
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid var(--gray-700);
+        }
+        .clean-table td {
+            padding: 16px 20px;
+            border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+            color: var(--gray-300);
+        }
+        .clean-table tr:last-child td { border-bottom: none; }
+        
+        /* Tags */
+        .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .tag-green { background: rgba(16, 185, 129, 0.15); color: var(--green); }
+        .tag-amber { background: rgba(245, 158, 11, 0.15); color: var(--amber); }
+        .tag-indigo { background: rgba(99, 102, 241, 0.15); color: var(--indigo-light); }
+        
+        /* Progress bars */
+        .progress-bar {
+            height: 8px;
+            background: var(--gray-700);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--indigo), var(--amber));
+            border-radius: 4px;
+        }
+        
+        /* Special Slides */
+        .slide-title {
+            background: linear-gradient(135deg, var(--dark) 0%, #1a1a3e 50%, var(--dark) 100%);
+        }
+        
+        .slide-title h1 {
+            background: linear-gradient(135deg, var(--white) 0%, var(--indigo-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .glow-circle {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.15;
+        }
+        
+        /* Flow diagram */
+        .flow-step {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px 0;
+        }
+        .flow-step .step-num {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--indigo);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        
+        .divider {
+            width: 80px;
+            height: 4px;
+            background: var(--indigo);
+            border-radius: 2px;
+            margin: 20px 0;
+        }
+
+        /* Print styles */
+        @media print {
+            .slide { page-break-after: always; min-height: auto; padding: 40px; }
+            body { background: white; color: black; }
+            .card { border-color: #ddd; }
+            h1, h2, h3 { color: var(--dark); }
+            .subtitle, .body-text, .card p, .clean-table td { color: var(--gray-700); }
+        }
+    </style>
+</head>
+<body>
+
+<!-- SLIDE 1: TITLE -->
+<div class="slide slide-title">
+    <div class="glow-circle" style="top: -100px; right: -100px; background: var(--indigo);"></div>
+    <div class="glow-circle" style="bottom: -100px; left: -100px; background: var(--amber);"></div>
+    
+    <div style="max-width: 900px;">
+        <p style="font-size: 18px; color: var(--indigo-light); font-weight: 600; margin-bottom: 24px; letter-spacing: 2px; text-transform: uppercase;">Seed Round — Confidential</p>
+        <h1 style="margin-bottom: 24px;">JoynPal</h1>
+        <p class="subtitle" style="font-size: 32px; color: var(--gray-300); margin-bottom: 48px;">
+            The Airbnb for Human Connection
+        </p>
+        <div class="divider"></div>
+        <p class="small-text" style="margin-top: 24px;">
+            Next Level International Limited • Hong Kong • March 2026
+        </p>
+    </div>
+    <div class="slide-number">1 / 12</div>
+</div>
+
+<!-- SLIDE 2: THE PROBLEM -->
+<div class="slide" style="background: var(--dark);">
+    <div class="slide-logo">JoynPal</div>
+    
+    <p style="color: var(--indigo-light); font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px;">The Problem</p>
+    <h2 style="margin-bottom: 48px;">The world is facing a <span class="highlight">loneliness epidemic</span></h2>
+    
+    <div class="grid-4" style="margin-bottom: 48px;">
+        <div class="stat-box card">
+            <div class="stat-number">1.2B</div>
+            <div class="stat-label">people experience loneliness worldwide</div>
+        </div>
+        <div class="stat-box card">
+            <div class="stat-number">$154B</div>
+            <div class="stat-label">annual cost to employers from absenteeism</div>
+        </div>
+        <div class="stat-box card">
+            <div class="stat-number">60%</div>
+            <div class="stat-label">of young adults report "serious loneliness"</div>
+        </div>
+        <div class="stat-box card">
+            <div class="stat-number">$2B+</div>
+            <div class="stat-label">Japan's rental friend market (growing 15% YoY)</div>
+        </div>
+    </div>
+    
+    <p class="body-text">The US Surgeon General declared loneliness a <strong style="color: var(--white);">public health crisis</strong>. We have platforms for dating, accommodation, and rides — but nothing for the most basic need: <strong style="color: var(--amber);">genuine human connection on demand</strong>.</p>
+    
+    <div class="slide-number">2 / 12</div>
+</div>
+
+<!-- SLIDE 3: THE SOLUTION -->
+<div class="slide" style="background: var(--dark);">
+    <div class="slide-logo">JoynPal</div>
+    
+    <p style="color: var(--indigo-light); font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px;">The Solution</p>
+    <h2 style="margin-bottom: 48px;">Book a companion for <span class="highlight">any activity</span></h2>
+    
+    <div class="grid-2">
+        <div>
+            <div class="flow-step">
+                <div class="step-num">1</div>
+                <div>
+                    <h3 style="font-size: 20px;">Browse</h3>
+                    <p style="color: var(--gray-300);">Search by city, category, availability, rating</p>
+                </div>
+            </div>
+            <div class="flow-step">
+                <div class="step-num">2</div>
+                <div>
+                    <h3 style="font-size: 20px;">Book & Pay</h3>
+                    <p style="color: var(--gray-300);">Secure escrow payment, choose your time slot</p>
+                </div>
+            </div>
+            <div class="flow-step">
+                <div class="step-num">3</div>
+                <div>
+                    <h3 style="font-size: 20px;">Meet</h3>
+                    <p style="color: var(--gray-300);">In person or virtual — dining, sports, events, mentoring</p>
+                </div>
+            </div>
+            <div class="flow-step">
+                <div class="step-num">4</div>
+                <div>
+                    <h3 style="font-size: 20px;">Review</h3>
+                    <p style="color: var(--gray-300);">Both parties rate each other. Trust scores update.</p>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="grid-3" style="gap: 16px;">
+                <div class="card" style="padding: 20px; text-align: center;">
+                    <span style="font-size: 32px;">💕</span>
+                    <p style="font-size: 13px; margin-top: 8px;">Social Companion</p>
+                </div>
+                <div class="card" style="padding: 20px; text-align: center;">
+                    <span style="font-size: 32px;">🎮</span>
+                    <p style="font-size: 13px; margin-top: 8px;">Gaming</p>
+                </div>
+                <div class="card" style="padding: 20px; text-align: center;">
+                    <span style="font-size: 32px;">🏋️</span>
+                    <p style="font-size: 13px; margin-top: 8px;">Sports</p>
+                </div>
+                <div class="card" style="padding: 20px; text-align: center;">
+                    <span style="font-size: 32px;">🎨</span>
+                    <p style="font-size: 13px; margin-top: 8px;">Culture</p>
+                </div>
+                <div class="card" style="padding: 20px; text-align: center;">
+                    <span style="font-size: 32px;">🧑‍💼</span>
+                    <p style="font-size: 13px; margin-top: 8px;">Mentoring</p>
+                </div>
+                <div class="card" style="padding: 20px; text-align: center;">
+                    <span style="font-size: 32px;">🌍</span>
+                    <p style="font-size: 13px; margin-top: 8px;">City Guide</p>
+                </div>
+                <div class="card" style="padding: 20px; text-align: center;">
+                    <span style="font-size: 32px;">🍽️</span>
+                    <p style="font-size: 13px; margin-top: 8px;">Dining</p>
+                </div>
+                <div class="card" style="padding: 20px; text-align: center;">
+                    <span style="font-size: 32px;">💻</span>
+                    <p style="font-size: 13px; margin-top: 8px;">Virtual</p>
+                </div>
+                <div class="card" style="padding: 20px; text-align: center;">
+                    <span style="font-size: 32px;">✈️</span>
+                    <p style="font-size: 13px; margin-top: 8px;">Travel</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="slide-number">3 / 12</div>
+</div>
+
+<!-- SLIDE 4: AI ADVANTAGE -->
+<div class="slide" style="background: linear-gradient(135deg, var(--dark) 0%, #1a1a3e 100%);">
+    <div class="slide-logo">JoynPal</div>
+    
+    <p style="color: var(--amber); font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px;">Our Unfair Advantage</p>
+    <h2 style="margin-bottom: 16px;">AI-Powered Multi-Agent Architecture</h2>
+    <p class="body-text" style="margin-bottom: 40px;">6 specialized AI agents working together to create an intelligent, self-improving platform</p>
+    
+    <div class="grid-3">
+        <div class="card card-highlight">
+            <span class="icon">🤖</span>
+            <h3>Matching Agent</h3>
+            <p>Personality analysis, preference learning, 3x better match quality than basic filtering</p>
+        </div>
+        <div class="card card-highlight">
+            <span class="icon">🛡️</span>
+            <h3>Moderation Agent</h3>
+            <p>Real-time behavior analysis, fraud detection, 90% reduction in inappropriate content</p>
+        </div>
+        <div class="card card-highlight">
+            <span class="icon">🎯</span>
+            <h3>Experience Agent</h3>
+            <p>Post-meeting follow-up, personalized suggestions, 40% increase in repeat bookings</p>
+        </div>
+        <div class="card card-highlight">
+            <span class="icon">💬</span>
+            <h3>Support Agent</h3>
+            <p>24/7 multilingual support, 95% resolution rate, &lt;2min response time</p>
+        </div>
+        <div class="card card-highlight">
+            <span class="icon">📊</span>
+            <h3>Analytics Agent</h3>
+            <p>Demand forecasting, dynamic pricing, platform-wide optimization</p>
+        </div>
+        <div class="card card-highlight" style="border-color: var(--amber); border-width: 2px;">
+            <span class="icon">⭐</span>
+            <h3 style="color: var(--amber);">Companion Assistant</h3>
+            <p>Every companion gets a personal AI assistant — calendar, bookings, auto-responses, translations</p>
+        </div>
+    </div>
+    
+    <div class="slide-number">4 / 12</div>
+</div>
+
+<!-- SLIDE 5: VIRAL ENGINE -->
+<div class="slide" style="background: var(--dark);">
+    <div class="slide-logo">JoynPal</div>
+    
+    <p style="color: var(--indigo-light); font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px;">Growth Engine</p>
+    <h2 style="margin-bottom: 16px;">OnlyFans-Inspired <span class="highlight">Viral Affiliate System</span></h2>
+    <p class="body-text" style="margin-bottom: 40px;">OnlyFans went from $0 to $5B+ using this exact model. We've already built the infrastructure.</p>
+    
+    <div class="grid-2">
+        <div>
+            <div style="background: var(--gray-900); border-radius: 16px; padding: 32px; margin-bottom: 24px;">
+                <h3 style="margin-bottom: 24px; font-size: 22px;">The Viral Loop</h3>
+                <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+                    <span class="tag tag-indigo">Ambassador joins</span>
+                    <span style="color: var(--gray-500);">→</span>
+                    <span class="tag tag-indigo">Recruits companions</span>
+                    <span style="color: var(--gray-500);">→</span>
+                    <span class="tag tag-amber">Companion earns</span>
+                    <span style="color: var(--gray-500);">→</span>
+                    <span class="tag tag-green">Ambassador gets 10-30%</span>
+                    <span style="color: var(--gray-500);">→</span>
+                    <span class="tag tag-indigo">Recruits more</span>
+                </div>
+            </div>
+            <div style="background: var(--gray-900); border-radius: 16px; padding: 32px;">
+                <h3 style="margin-bottom: 16px; font-size: 22px;">Why It Works</h3>
+                <ul style="list-style: none; font-size: 17px; color: var(--gray-300);">
+                    <li style="padding: 8px 0;">✅ Zero CAC for supply growth</li>
+                    <li style="padding: 8px 0;">✅ Aligned incentives at every level</li>
+                    <li style="padding: 8px 0;">✅ </li>
+                    <li style="padding: 8px 0;">✅ Proven at billion-dollar scale</li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <div class="card" style="padding: 0; overflow: hidden;">
+                <div style="background: var(--indigo-dark); padding: 16px 24px;">
+                    <h3 style="font-size: 18px;">Affiliate Infrastructure — Already Built</h3>
+                </div>
+                <table class="clean-table" style="font-size: 15px;">
+                    <tr><td>Referral link tracking</td><td><span class="tag tag-green">✅ Built</span></td></tr>
+                    <tr><td>Multi-tier commissions</td><td><span class="tag tag-green">✅ Built</span></td></tr>
+                    <tr><td>Real-time dashboard</td><td><span class="tag tag-green">✅ Built</span></td></tr>
+                    <tr><td>Payouts (PayPal/Bank/Crypto)</td><td><span class="tag tag-green">✅ Built</span></td></tr>
+                    <tr><td>Marketing materials</td><td><span class="tag tag-green">✅ Built</span></td></tr>
+                    <tr><td>Telegram notifications</td><td><span class="tag tag-green">✅ Built</span></td></tr>
+                    <tr><td>Custom domain verification</td><td><span class="tag tag-green">✅ Built</span></td></tr>
+                    <tr><td>External API</td><td><span class="tag tag-green">✅ Built</span></td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <div class="slide-number">5 / 12</div>
+</div>
+
+<!-- SLIDE 6: MARKET -->
+<div class="slide" style="background: var(--dark);">
+    <div class="slide-logo">JoynPal</div>
+    
+    <p style="color: var(--indigo-light); font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px;">Market Opportunity</p>
+    <h2 style="margin-bottom: 48px;">A <span class="highlight">$50B+</span> untapped market</h2>
+    
+    <div class="grid-3" style="margin-bottom: 48px;">
+        <div class="card" style="text-align: center;">
+            <div style="font-size: 48px; font-weight: 900; color: var(--indigo-light);">$556B</div>
+            <div style="font-size: 14px; color: var(--gray-500); margin-top: 4px;">Global Gig Economy</div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 100%;"></div></div>
+        </div>
+        <div class="card" style="text-align: center;">
+            <div style="font-size: 48px; font-weight: 900; color: var(--indigo-light);">$254B</div>
+            <div style="font-size: 14px; color: var(--gray-500); margin-top: 4px;">Experience Economy</div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 60%;"></div></div>
+        </div>
+        <div class="card" style="text-align: center;">
+            <div style="font-size: 48px; font-weight: 900; color: var(--indigo-light);">$1.8T</div>
+            <div style="font-size: 14px; color: var(--gray-500); margin-top: 4px;">Wellness Market</div>
+            <div class="progress-bar"><div class="progress-fill" style="width: 45%;"></div></div>
+        </div>
+    </div>
+    
+    <div class="grid-2">
+        <div>
+            <h3 style="margin-bottom: 16px; color: var(--amber);">Why Now?</h3>
+            <ul style="list-style: none; font-size: 18px; color: var(--gray-300);">
+                <li style="padding: 8px 0;">🦠 Post-COVID loneliness crisis</li>
+                <li style="padding: 8px 0;">🤖 AI makes matching & moderation possible at scale</li>
+                <li style="padding: 8px 0;">💰 Creator economy normalization</li>
+                <li style="padding: 8px 0;">🇯🇵 Japan proved the model ($2B+ market)</li>
+                <li style="padding: 8px 0;">⚖️ Non-sexual companionship is legal everywhere</li>
+            </ul>
+        </div>
+        <div>
+            <h3 style="margin-bottom: 16px; color: var(--amber);">Target Markets</h3>
+            <table class="clean-table" style="font-size: 16px;">
+                <tr><td><strong>Year 1</strong></td><td>Switzerland, France, UK</td></tr>
+                <tr><td><strong>Year 2</strong></td><td>Germany, Spain, Nordics, US</td></tr>
+                <tr><td><strong>Year 3</strong></td><td>Global expansion</td></tr>
+            </table>
+            <div style="margin-top: 24px;">
+                <p class="small-text">SAM: $5B • Year 1 SOM: €5-10M GMV</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="slide-number">6 / 12</div>
+</div>
+
+<!-- SLIDE 7: BUSINESS MODEL -->
+<div class="slide" style="background: var(--dark);">
+    <div class="slide-logo">JoynPal</div>
+    
+    <p style="color: var(--indigo-light); font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px;">Business Model</p>
+    <h2 style="margin-bottom: 48px;">Multiple revenue streams, <span class="highlight">high margins</span></h2>
+    
+    <div class="grid-2">
+        <div>
+            <table class="clean-table">
+                <thead>
+                    <tr><th>Revenue Stream</th><th>Margin</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong style="color: var(--white);">Platform Commission</strong><br><span class="small-text">15-25% per booking</span></td>
+                        <td><span class="tag tag-green">~95%</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong style="color: var(--white);">Companion Subscriptions</strong><br><span class="small-text">Premium profiles, AI assistant, analytics</span></td>
+                        <td><span class="tag tag-green">MRR</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong style="color: var(--white);">Boost & Promotion</strong><br><span class="small-text">Visibility upgrades for companions</span></td>
+                        <td><span class="tag tag-green">High</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong style="color: var(--white);">Enterprise</strong><br><span class="small-text">B2B packages for companies</span></td>
+                        <td><span class="tag tag-amber">B2B</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-amber">Recurring</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <div class="card" style="margin-bottom: 24px;">
+                <h3 style="font-size: 18px; color: var(--amber); margin-bottom: 16px;">Unit Economics (at scale)</h3>
+                <table class="clean-table" style="font-size: 16px;">
+                    <tr><td>Avg. booking value</td><td style="text-align: right; color: var(--white); font-weight: 700;">€50</td></tr>
+                    <tr><td>Platform take rate</td><td style="text-align: right; color: var(--white); font-weight: 700;">20%</td></tr>
+                    <tr><td>Revenue per booking</td><td style="text-align: right; color: var(--white); font-weight: 700;">€10</td></tr>
+                    <tr><td>CAC (via affiliates)</td><td style="text-align: right; color: var(--green); font-weight: 700;">€5</td></tr>
+                    <tr><td>LTV (12 months)</td><td style="text-align: right; color: var(--white); font-weight: 700;">€120</td></tr>
+                    <tr><td><strong>LTV:CAC</strong></td><td style="text-align: right; color: var(--amber); font-weight: 900; font-size: 24px;">24:1</td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <div class="slide-number">7 / 12</div>
+</div>
+
+<!-- SLIDE 8: TRACTION -->
+<div class="slide" style="background: linear-gradient(135deg, var(--dark) 0%, #1a1a3e 100%);">
+    <div class="slide-logo">JoynPal</div>
+    
+    <p style="color: var(--amber); font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px;">Traction & Proof</p>
+    <h2 style="margin-bottom: 16px;">Built by one person. <span class="highlight">Ready to scale.</span></h2>
+    <p class="body-text" style="margin-bottom: 48px;">This isn't a pitch deck with promises. The technology is built, tested, and functional.</p>
+    
+    <div class="grid-4" style="margin-bottom: 48px;">
+        <div class="card" style="text-align: center; padding: 24px;">
+            <div style="font-size: 42px; font-weight: 900; color: var(--green);">1,000+</div>
+            <div class="small-text" style="margin-top: 4px;">Files of production code</div>
+        </div>
+        <div class="card" style="text-align: center; padding: 24px;">
+            <div style="font-size: 42px; font-weight: 900; color: var(--green);">4</div>
+            <div class="small-text" style="margin-top: 4px;">Complete platforms built solo</div>
+        </div>
+        <div class="card" style="text-align: center; padding: 24px;">
+            <div style="font-size: 42px; font-weight: 900; color: var(--green);">17</div>
+            <div class="small-text" style="margin-top: 4px;">Years of dev experience</div>
+        </div>
+        <div class="card" style="text-align: center; padding: 24px;">
+            <div style="font-size: 42px; font-weight: 900; color: var(--green);">1</div>
+            <div class="small-text" style="margin-top: 4px;">Person. That's it.</div>
+        </div>
+    </div>
+    
+    <div class="grid-2">
+        <div class="card">
+            <h3 style="font-size: 18px; margin-bottom: 16px;">What's Built</h3>
+            <ul style="list-style: none; font-size: 16px; color: var(--gray-300);">
+                <li style="padding: 6px 0;">✅ Full marketplace backend (Django)</li>
+                <li style="padding: 6px 0;">✅ React Design System (from Figma)</li>
+                <li style="padding: 6px 0;">✅ Complete affiliate engine</li>
+                <li style="padding: 6px 0;">✅ Payment infrastructure</li>
+                <li style="padding: 6px 0;">✅ Trust & Safety system</li>
+                <li style="padding: 6px 0;">✅ AI agent architecture</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3 style="font-size: 18px; margin-bottom: 16px;">Technical Stack</h3>
+            <ul style="list-style: none; font-size: 16px; color: var(--gray-300);">
+                <li style="padding: 6px 0;">🐍 Django (REST API + Templates)</li>
+                <li style="padding: 6px 0;">⚛️ React + TypeScript (Frontend)</li>
+                <li style="padding: 6px 0;">🤖 OpenClaw (AI Multi-Agent)</li>
+                <li style="padding: 6px 0;">💳 Stripe / Custom Payment</li>
+                <li style="padding: 6px 0;">🐳 Docker (Production-ready)</li>
+                <li style="padding: 6px 0;">📱 React Native (Mobile-ready)</li>
+                <li style="padding: 6px 0;">🔐 KYC / Trust Score System</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="slide-number">8 / 12</div>
+</div>
+
+<!-- SLIDE 9: COMPETITIVE -->
+<div class="slide" style="background: var(--dark);">
+    <div class="slide-logo">JoynPal</div>
+    
+    <p style="color: var(--indigo-light); font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px;">Competitive Landscape</p>
+    <h2 style="margin-bottom: 48px;">The only platform with <span class="highlight">all four pillars</span></h2>
+    
+    <table class="clean-table" style="font-size: 17px;">
+        <thead>
+            <tr>
+                <th>Feature</th>
+                <th style="text-align: center;">JoynPal</th>
+                <th style="text-align: center;">Bumble BFF</th>
+                <th style="text-align: center;">RentAFriend</th>
+                <th style="text-align: center;">Meetup</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>On-demand booking</td>
+                <td style="text-align: center; font-size: 22px;">✅</td>
+                <td style="text-align: center; font-size: 22px;">❌</td>
+                <td style="text-align: center; font-size: 22px;">⚠️</td>
+                <td style="text-align: center; font-size: 22px;">❌</td>
+            </tr>
+            <tr>
+                <td>Integrated payments</td>
+                <td style="text-align: center; font-size: 22px;">✅</td>
+                <td style="text-align: center; font-size: 22px;">❌</td>
+                <td style="text-align: center; font-size: 22px;">❌</td>
+                <td style="text-align: center; font-size: 22px;">❌</td>
+            </tr>
+            <tr>
+                <td>AI multi-agent system</td>
+                <td style="text-align: center; font-size: 22px;">✅</td>
+                <td style="text-align: center; font-size: 22px;">❌</td>
+                <td style="text-align: center; font-size: 22px;">❌</td>
+                <td style="text-align: center; font-size: 22px;">❌</td>
+            </tr>
+            <tr>
+                <td>Viral affiliate engine</td>
+                <td style="text-align: center; font-size: 22px;">✅</td>
+                <td style="text-align: center; font-size: 22px;">❌</td>
+                <td style="text-align: center; font-size: 22px;">❌</td>
+                <td style="text-align: center; font-size: 22px;">❌</td>
+            </tr>
+            <tr>
+                <td style="text-align: center; font-size: 22px;">✅</td>
+                <td style="text-align: center; font-size: 22px;">❌</td>
+                <td style="text-align: center; font-size: 22px;">❌</td>
+                <td style="text-align: center; font-size: 22px;">❌</td>
+            </tr>
+            <tr>
+                <td>Trust score system</td>
+                <td style="text-align: center; font-size: 22px;">✅</td>
+                <td style="text-align: center; font-size: 22px;">⚠️</td>
+                <td style="text-align: center; font-size: 22px;">❌</td>
+                <td style="text-align: center; font-size: 22px;">⚠️</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div style="margin-top: 40px; padding: 24px; background: var(--gray-900); border-radius: 12px; border-left: 4px solid var(--amber);">
+        <p style="font-size: 20px; color: var(--white); font-weight: 600;">
+            "They're dating apps that added a feature. We're purpose-built for this."
+        </p>
+    </div>
+    
+    <div class="slide-number">9 / 12</div>
+</div>
+
+<!-- SLIDE 10: GO TO MARKET -->
+<div class="slide" style="background: var(--dark);">
+    <div class="slide-logo">JoynPal</div>
+    
+    <p style="color: var(--indigo-light); font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px;">Go-to-Market</p>
+    <h2 style="margin-bottom: 48px;">From <span class="highlight">Geneva</span> to the world</h2>
+    
+    <div class="grid-3">
+        <div class="card" style="border-top: 4px solid var(--indigo);">
+            <span class="tag tag-indigo" style="margin-bottom: 16px; display: inline-block;">Phase 1 • M1-3</span>
+            <h3 style="font-size: 22px; margin-bottom: 12px;">Launch</h3>
+            <p style="font-size: 15px; margin-bottom: 16px;">Geneva & Paris — high purchasing power, international, lonely professionals</p>
+            <ul style="list-style: none; font-size: 14px; color: var(--gray-300);">
+                <li style="padding: 4px 0;">→ 200 initial companions</li>
+                <li style="padding: 4px 0;">→ Affiliate engine activation</li>
+                <li style="padding: 4px 0;">→ TikTok/Instagram content</li>
+                <li style="padding: 4px 0;">→ PR: "The app that cures loneliness"</li>
+            </ul>
+        </div>
+        <div class="card" style="border-top: 4px solid var(--amber);">
+            <span class="tag tag-amber" style="margin-bottom: 16px; display: inline-block;">Phase 2 • M4-6</span>
+            <h3 style="font-size: 22px; margin-bottom: 12px;">Growth</h3>
+            <p style="font-size: 15px; margin-bottom: 16px;">London, Berlin, Zurich — powered by viral affiliate engine</p>
+            <ul style="list-style: none; font-size: 14px; color: var(--gray-300);">
+                <li style="padding: 4px 0;">→ 1,000+ companions</li>
+                <li style="padding: 4px 0;">→ Enterprise product launch</li>
+                <li style="padding: 4px 0;">→ App Store launch</li>
+                <li style="padding: 4px 0;">→ AI assistants for companions</li>
+            </ul>
+        </div>
+        <div class="card" style="border-top: 4px solid var(--green);">
+            <span class="tag tag-green" style="margin-bottom: 16px; display: inline-block;">Phase 3 • M7-12</span>
+            <h3 style="font-size: 22px; margin-bottom: 12px;">Scale</h3>
+            <p style="font-size: 15px; margin-bottom: 16px;">US entry — prepare Series A at 10x valuation</p>
+            <ul style="list-style: none; font-size: 14px; color: var(--gray-300);">
+                <li style="padding: 4px 0;">→ 15,000+ companions</li>
+                <li style="padding: 4px 0;">→ </li>
+                <li style="padding: 4px 0;">→ €5M+ GMV monthly</li>
+                <li style="padding: 4px 0;">→ Series A ready</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="slide-number">10 / 12</div>
+</div>
+
+<!-- SLIDE 11: FINANCIALS -->
+<div class="slide" style="background: var(--dark);">
+    <div class="slide-logo">JoynPal</div>
+    
+    <p style="color: var(--indigo-light); font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px;">Financial Projections</p>
+    <h2 style="margin-bottom: 48px;">Conservative path to <span class="highlight">€17.5M revenue</span> in 3 years</h2>
+    
+    <table class="clean-table" style="margin-bottom: 48px;">
+        <thead>
+            <tr>
+                <th></th>
+                <th style="text-align: right;">Year 1</th>
+                <th style="text-align: right;">Year 2</th>
+                <th style="text-align: right;">Year 3</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>GMV</td>
+                <td style="text-align: right; color: var(--white); font-weight: 600;">€2M</td>
+                <td style="text-align: right; color: var(--white); font-weight: 600;">€15M</td>
+                <td style="text-align: right; color: var(--white); font-weight: 600;">€80M</td>
+            </tr>
+            <tr>
+                <td>Platform Revenue</td>
+                <td style="text-align: right; color: var(--white); font-weight: 600;">€400K</td>
+                <td style="text-align: right; color: var(--white); font-weight: 600;">€3M</td>
+                <td style="text-align: right; color: var(--white); font-weight: 600;">€16M</td>
+            </tr>
+            <tr>
+                <td>Subscriptions</td>
+                <td style="text-align: right; color: var(--white); font-weight: 600;">€50K</td>
+                <td style="text-align: right; color: var(--white); font-weight: 600;">€300K</td>
+                <td style="text-align: right; color: var(--white); font-weight: 600;">€1.5M</td>
+            </tr>
+            <tr style="border-top: 2px solid var(--indigo);">
+                <td><strong style="color: var(--amber);">Total Revenue</strong></td>
+                <td style="text-align: right; color: var(--amber); font-weight: 900; font-size: 22px;">€450K</td>
+                <td style="text-align: right; color: var(--amber); font-weight: 900; font-size: 22px;">€3.3M</td>
+                <td style="text-align: right; color: var(--amber); font-weight: 900; font-size: 22px;">€17.5M</td>
+            </tr>
+            <tr>
+                <td>EBITDA</td>
+                <td style="text-align: right; color: var(--red); font-weight: 600;">-€150K</td>
+                <td style="text-align: right; color: var(--green); font-weight: 600;">€800K</td>
+                <td style="text-align: right; color: var(--green); font-weight: 600;">€7M</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="grid-3">
+        <div class="card" style="text-align: center;">
+            <div style="font-size: 36px; font-weight: 900; color: var(--amber);">Month 14</div>
+            <div class="small-text">Break-even</div>
+        </div>
+        <div class="card" style="text-align: center;">
+            <div style="font-size: 36px; font-weight: 900; color: var(--indigo-light);">Month 12</div>
+            <div class="small-text">Series A ready ($5-10M)</div>
+        </div>
+        <div class="card" style="text-align: center;">
+            <div style="font-size: 36px; font-weight: 900; color: var(--green);">24:1</div>
+            <div class="small-text">LTV:CAC ratio</div>
+        </div>
+    </div>
+    
+    <div class="slide-number">11 / 12</div>
+</div>
+
+<!-- SLIDE 12: THE ASK -->
+<div class="slide slide-title">
+    <div class="glow-circle" style="top: -150px; left: 50%; transform: translateX(-50%); background: var(--indigo);"></div>
+    <div class="glow-circle" style="bottom: -100px; right: -100px; background: var(--amber);"></div>
+    
+    <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+        <p style="color: var(--indigo-light); font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 24px;">The Ask</p>
+        
+        <h2 style="margin-bottom: 48px; font-size: 56px;">€600,000 <span style="color: var(--gray-300); font-weight: 400;">Seed Round</span></h2>
+        
+        <div class="grid-2" style="margin-bottom: 48px; max-width: 600px; margin-left: auto; margin-right: auto; margin-bottom: 48px;">
+            <div class="card" style="text-align: center;">
+                <div style="font-size: 36px; font-weight: 900; color: var(--indigo-light);">€300K</div>
+                <div class="small-text">Technology & AI</div>
+            </div>
+            <div class="card" style="text-align: center;">
+                <div style="font-size: 36px; font-weight: 900; color: var(--amber);">€300K</div>
+                <div class="small-text">Marketing & Growth</div>
+            </div>
+        </div>
+        
+        <div style="margin-bottom: 48px;">
+            <p class="body-text" style="font-size: 18px; color: var(--gray-300);">
+                12 months runway → 3 European markets → Product-market fit → Series A
+            </p>
+        </div>
+        
+        <div class="divider" style="margin: 0 auto 48px;"></div>
+        
+        <p style="font-size: 28px; font-weight: 700; color: var(--white); font-style: italic; line-height: 1.4;">
+            "I built this alone.<br/>
+            <span class="highlight">Imagine what happens when we add fuel.</span>"
+        </p>
+        
+        <div style="margin-top: 48px;">
+            <p style="color: var(--gray-500); font-size: 16px;">
+                Sacha • Founder & CEO/CTO<br/>
+                Next Level International Limited • Hong Kong<br/>
+                <span style="color: var(--indigo-light);">joynpal.com</span>
+            </p>
+        </div>
+    </div>
+    
+    <div class="slide-number">12 / 12</div>
+</div>
+
+</body>
+</html>
