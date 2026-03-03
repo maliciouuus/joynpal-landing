@@ -1,7 +1,7 @@
 # JoynPal — Business Plan
 
 **Confidential — March 2026**
-**Billion App Company Ltd. (Hong Kong)**
+**Next Level International Limited (Hong Kong)**
 
 ---
 
@@ -15,7 +15,6 @@ JoynPal fills this gap with a fully functional platform featuring:
 - **AI-powered matching** via multi-agent architecture (OpenClaw)
 - **Viral affiliate engine** inspired by OnlyFans' ambassador model
 - **Trust & safety infrastructure** with KYC, trust scores, and real-time moderation
-- **White-label capability** for B2B expansion
 
 The platform is **already built** — backend, affiliate system, payment infrastructure, and design system — by a solo technical founder with 17 years of development experience.
 
@@ -142,7 +141,6 @@ Viral loop
 | Payout system (PayPal, bank transfer, crypto) | ✅ Built |
 | Marketing materials & banner generator | ✅ Built |
 | Telegram bot notifications | ✅ Built |
-| White-label sites for top affiliates | ✅ Built |
 | Custom domain verification | ✅ Built |
 | Partner management system | ✅ Built |
 | API for external integrations | ✅ Built |
@@ -151,7 +149,6 @@ Viral loop
 
 1. **Zero CAC for supply growth**: Ambassadors recruit companions for free (commission-based)
 2. **Aligned incentives**: Ambassadors earn more when their recruits earn more → they help them succeed
-3. **White-label expansion**: Top affiliates can create their own branded JoynPal sites → geographic expansion without company overhead
 4. **Proven model**: OnlyFans proved this works at billion-dollar scale
 
 ### Growth Projections (Conservative)
@@ -177,7 +174,6 @@ Viral loop
 | **Companion subscriptions** | Premium profiles, analytics, AI assistant | Monthly recurring |
 | **Boost & promotion** | Companions pay for visibility | High margin |
 | **Enterprise packages** | Companies offering JoynPal to employees (teambuilding, onboarding, expat integration) | B2B contracts |
-| **White-label licensing** | Affiliates pay for branded platforms | Recurring license fees |
 
 ### Unit Economics (Target at Scale)
 
@@ -252,7 +248,6 @@ The intersection of three massive markets:
 | Integrated payments | ✅ | ❌ |
 | AI multi-agent system | ✅ | ❌ |
 | Affiliate viral engine | ✅ | ❌ |
-| White-label B2B | ✅ | ❌ |
 | Trust score system | ✅ | Basic |
 | Real-time chat + video | ✅ | Limited |
 
@@ -279,7 +274,6 @@ The intersection of three massive markets:
 ### Phase 3: Scale (Months 7-12) — €300K
 
 - AI companion assistants roll out to all companions
-- White-label platform for top affiliates
 - US market entry
 - Prepare Series A ($5-10M target)
 
@@ -339,7 +333,6 @@ The intersection of three massive markets:
 | Metric | Status |
 |---|---|
 | Working prototype | ✅ Full Django backend with all core features |
-| Affiliate system | ✅ Complete (referral tracking, commissions, payouts, white-label) |
 | Design system | ✅ React component library from Figma |
 | Payment infrastructure | ✅ Built and tested |
 | AI architecture | ✅ Designed, OpenClaw integration ready |
@@ -415,7 +408,7 @@ The intersection of three massive markets:
 
 **Sacha**
 Founder & CEO/CTO
-Billion App Company Ltd.
+Next Level International Limited
 Hong Kong
 
 ---
