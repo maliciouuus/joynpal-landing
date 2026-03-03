@@ -201,6 +201,37 @@
             margin: 20px 0;
         }
 
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .slide { padding: 30px 20px; min-height: auto; padding-top: 60px; padding-bottom: 60px; }
+            h1 { font-size: 36px; letter-spacing: -1px; }
+            h2 { font-size: 28px; letter-spacing: -0.5px; }
+            h3 { font-size: 20px; }
+            .subtitle { font-size: 18px; }
+            .body-text { font-size: 16px; }
+            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; gap: 16px; }
+            .stat-number { font-size: 36px; }
+            .stat-box { padding: 20px; }
+            .card { padding: 20px; }
+            .card .icon { font-size: 28px; margin-bottom: 10px; }
+            .card h3 { font-size: 18px; }
+            .card p { font-size: 14px; }
+            .clean-table { font-size: 14px; }
+            .clean-table th, .clean-table td { padding: 10px 8px; }
+            .slide-logo { top: 15px; left: 20px; font-size: 14px; }
+            .slide-number { bottom: 15px; right: 20px; font-size: 12px; }
+            .flow-step .step-num { width: 36px; height: 36px; font-size: 16px; }
+            .glow-circle { width: 200px; height: 200px; }
+            .tag { font-size: 11px; padding: 3px 8px; }
+        }
+        
+        @media (max-width: 480px) {
+            .slide { padding: 20px 16px; padding-top: 50px; padding-bottom: 50px; }
+            h1 { font-size: 28px; }
+            h2 { font-size: 24px; }
+            .stat-number { font-size: 28px; }
+        }
+
         /* Print styles */
         @media print {
             .slide { page-break-after: always; min-height: auto; padding: 40px; }
